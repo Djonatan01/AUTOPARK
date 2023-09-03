@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 style="text-align: center;">Cadastrar novo cartão </h2><br>
+<div class="container">
+{% for category, message in get_flashed_messages(with_categories=true) %}
+  {% if category == 'error' %}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
+  {% else %}
+  <div class="alert alert-success">
+        {{message}}
+  </div>
+  {% endif %}
+{% endfor %}
+<form method="POST" action="{{url_for('router.cadCartao.cadastroCartao')}}">
+  <div class="row">
+    <div class="col-sm-2">
+      <label class="form-label" for="form3Example4">Cartão RFID</label>
+      <input type="text" minlength="8" maxlength="8" class="form-control" name="rfid"><br>
+    </div>
+    <div class="col-sm-2">
+      <label class="form-label" for="form3Example4">Código usuário</label>
+      <input type="text" minlength="8" maxlength="8" class="form-control" name="codUsuarioCadastro"><br>
+    </div>
+  </div>
+  <button type="submit" name="bt1" value="1" class="btn btn-secondary" style="width:5rem;height:2.5rem" >Salvar</button>
+  <hr>
+  <br>
+</div>
+</form>
+{% endblock conteudo %}

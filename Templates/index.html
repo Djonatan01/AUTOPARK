@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+   <h2><strong>AUTOPARK!</strong></h2>
+   <br>
+   <a href="{{url_for('router.cadCartao.cadastroCartao')}}">Reservas Online</a>, Diga adeus à busca por vagas! Com nosso sistema de reservas online, você pode garantir sua vaga com antecedência, economizando tempo e esforço preciosos.Faça sua reserva de vaga de estacionamento de forma rápida e fácil garantindo seu espaço antes mesmo de chegar.
+   <hr>
+   <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <img src="{{url_for('static', filename='Images/Audi_principal.png')}}" class="img-fluid mx-auto d-block" alt="Imagem responsiva">
+   </div>
+   <hr>
+</div>
+<div>
+  <h3>Nossos Destaques:</h3>
+    <ul>
+      <li>
+        <strong>Faça Parte da Família Autopark:</strong> Junte-se a nós e experimente a diferença de um estacionamento que prioriza você. Não importa se é a sua primeira visita ou se você já é um cliente fiel, estamos ansiosos para recebê-lo na Autopark.
+      </li>
+      <li>
+        <strong>Promoções Especiais para cliente fixo:</strong> Confira nossas promoções especiais e descontos sazonais para aproveitar ainda mais a sua experiência de estacionamento.
+      </li>
+      <li>
+        <strong>Sustentabilidade em Ação:</strong> Comprometidos com um futuro mais verde, oferecemos estações de recarga para veículos elétricos e implementamos práticas sustentáveis em nossas operações.
+      </li>
+    </ul>
+  Na Autopark, estacionar nunca foi tão fácil e seguro. Sua jornada começa aqui.
+</div>
+<br>
+{% endblock conteudo %}

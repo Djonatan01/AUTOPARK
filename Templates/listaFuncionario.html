@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<br>
+<a href="{{url_for('router.func.createFunc')}}" class="btn btn-secondary btn-xs">Cadastrar novo funcionário</a>
+<hr>
+<div class="row">
+    <label class="form-label" for="form3Example4">Nome do funcionário</label>
+    <fieldset class="form-group col-md-6">
+        <form action="{{url_for('router.func.listFunc')}}" method="GET">
+            <input type="text" class="form-control" name="nomeFuncionario" value="{{_nomeFunc}}">
+    </fieldset>
+    <fieldset class="form-group col-md-4">
+        <button type="submit" class="btn btn-secondary">Filtrar</button>
+    </fieldset>
+    </form>
+</div>
+<br>
+
+<div class="bg-white "> <!--table-responsive-->
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">NOME</th>
+        <th scope="col">CÓDIGO USUÁRIO</th>
+        <th scope="col">ENDEREÇO</th>
+        <th scope="col">CONTATO</th>
+        <th scope="col">E-MAIL</th>
+        <th scope="col">AÇÕES</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for registro in listData['regFunc'].items %}
+      {% if not registro.nome == "ADMIN" %}
+      <tr>
+        <td>{{registro.nome}}</td>
+        <td>{{registro.mat}}</td>
+        <td>{{registro.endereco}}</td>
+        <td>{{registro.contato}}</td>
+        <td>{{registro.email}}</td>
+        {% if current_user.nome == "ADMIN" %}
+        <td>
+          <a href="{{registro.id}}/updateFunc" class="btn btn-secondary btn-xs">Editar</a>
+          <a href="{{registro.id}}/removeFunc"
+            onclick="return confirm('Deseja realmente excluir esse registro ?')"
+            class="btn btn-danger btn-xs">Excluir</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<div style="display: flex;">
+    {% if listData['regFunc'].has_prev %}
+    <a href="{{listData['regFunc'].prev_num}}?nomeFuncionario={{_nomeFunc}}">«Anterior |</a>
+    {% else %}
+    <p>«Anterior |</p>
+    {% endif %}
+
+    {% if listData['regFunc'].has_next %}
+      {% if listData['page'] == 1%}
+        <a href="list/{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+      {% else %}
+        <a href="{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+      {% endif %}
+    {% else %}
+    <p>| Próximo»</p>
+    {% endif %}
+</div>
+
+
+{% endblock conteudo %}
