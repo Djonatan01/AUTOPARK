@@ -14,26 +14,26 @@
 </div>
 <br>
 <div class="bg-white "> <!--table-responsive-->
-<table class="table table-bordered table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">NOME</th>
-      <th scope="col">DATA</th>
-      <th scope="col">HORA</th>
-      <th scope="col">STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for registro in listData['registros'].items %}
-    <tr>
-      <td>{{registro.nome}}</td>
-      <td>{{registro.dt}}</td>
-      <td>{{registro.hr}}</td>
-      <td>{{registro.statusReg}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">NOME</th>
+        <th scope="col">DATA</th>
+        <th scope="col">HORA</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for registro in listData['registros'].items %}
+      <tr>
+        <td>{{registro.nome}}</td>
+        <td>{{registro.dt}}</td>
+        <td>{{registro.hr}}</td>
+        <td>{{registro.statusReg}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 <div style="display: flex;">
   {% if listData['registros'].has_prev %}

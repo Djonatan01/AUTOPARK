@@ -1,5 +1,5 @@
 from flask import render_template, request, flash, redirect, url_for, Blueprint
-from Src.Model.BancoDados import UserBd
+from confg import db
 from Src.Controller.Cartoes import CartoesController
 
 bp_cadCartoes = Blueprint("cadCartao",__name__)
@@ -19,11 +19,8 @@ def cadastroCartao():
                 flash('Cartão RFID ou Usuário já cadastrado', 'error')
             return render_template('cadastroCartaoRFID.html')
 
-@bp_cadCartoes.route('/ListCartao', methods=['GET','POST'])
+@bp_cadCartoes.route('/ListCartao', methods=['GET'])
 def ListCartao():
-    return render_template('cadastroCartaoRFID.html')
-    """
-    Purpose:
-    """
-
-# end def
+    # Chame a função CartoesController.ListCartoes() e passe o resultado para render_template
+    usuarios = CartoesController.ListCartoes()
+    return render_template('listaUsuariosSemcartao.html',usuarios=usuarios)

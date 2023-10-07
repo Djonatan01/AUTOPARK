@@ -1,0 +1,56 @@
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('router.home.index')}}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('router.user.listUser')}}">Usuários</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-end me-4" style="text-align:right; color:white; width:500px ">
+                Usuário logado:<br>{{current_user.nome}}
+            </div>
+            <div class="text-end">
+                <a type="button" class="btn btn-outline-light me-2" href="{{url_for('router.login.logout')}}">Logout</a>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+#codigos da rota createUser
+
+_coduser=request.form.get('codUser')
+_nome=request.form.get('nome')
+_cpf=request.form.get('cpf')
+_endereco=request.form.get('endereco')
+_contato=request.form.get('contato')
+_email=request.form.get('email')
+_senha=request.form.get('senha')
+
+if request.method == 'POST':
+if UserController.checkEmail(_email):
+  flash('Email já cadastrado', 'error')
+else:
+  if any((x is None or len(x)<1) for x in [_coduser,_cpf ,_nome, _endereco, _contato , _email, _senha,_status]):
+    flash('Preencha todos os campos do formulário', 'error')
+  else:
+    if Regex.contatoRegex(_contato):
+      if Regex.emailRegex(_email):
+        if UserController.createUser(_coduser,_cpf,_nome,_endereco,_contato,_email,_senha,_status):
+          return redirect(url_for('router.user.listUser'))
+        else:
+          flash('Usuário já cadastrado', 'error')
+      else:
+        flash('E-mail inválido', 'error')
+    else:
+        flash('Celular inválido', 'error')

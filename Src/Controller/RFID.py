@@ -1,4 +1,4 @@
-from Src.Model.BancoDados import Registro, UserBd ,CartaoRFID
+from Src.Model.BancoDados import Registro ,CartaoRFID,Usuarios
 from datetime import datetime
 from pytz import timezone
 from confg import db
@@ -12,7 +12,6 @@ class RFID:
         hora = now.strftime("%H:%M:%S")
 
         # Filter user (Unique register)
-        #user = UserBd.query.filter_by(rfid=rfidCode).first()
         rfid = CartaoRFID.query.filter_by(numRfid=rfidCode).first()
         if rfid == None:
             print("Não existe cadastro")
@@ -36,16 +35,16 @@ class RFID:
         data = now.strftime("%d/%m/%Y")
         if _data == "None" or _data is None or len(_data) < 1:
             query = (
-                Registro.query.join(UserBd, Registro.rfid == UserBd.rfid)
-                .add_columns(UserBd.nome, Registro.dt, Registro.hr, Registro.statusReg)
+                Registro.query.join(Usuarios, Registro.rfid == Usuarios.rfid)
+                .add_columns(Usuarios.nome, Registro.dt, Registro.hr, Registro.statusReg)
                 .filter(Registro.dt == data)
                 .paginate(page=page, per_page=per_page)
             )
         else:
             _dataFilter = datetime.strptime(_data, "%Y-%m-%d").strftime("%d/%m/%Y")
             query = (
-                Registro.query.join(UserBd, Registro.rfid == UserBd.rfid)
-                .add_columns(UserBd.nome, Registro.dt, Registro.hr, Registro.statusReg)
+                Registro.query.join(Usuarios, Registro.rfid == Usuarios.rfid)
+                .add_columns(Usuarios.nome, Registro.dt, Registro.hr, Registro.statusReg)
                 .filter(Registro.dt == _dataFilter)
                 .paginate(page=page, per_page=per_page)
             )

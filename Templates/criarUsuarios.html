@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 style="text-align: center;">Cadastrar usuário</h2><br>
+
+<div class="container">
+{% for category, message in get_flashed_messages(with_categories=true) %}
+  {% if category == 'error' %}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
+  {% else %}
+  <div class="alert alert-success">
+        {{message}}
+  </div>
+  {% endif %}
+{% endfor %}
+<form method="POST" action="{{url_for('router.user.createUser')}}">
+    <div class="col-sm-5">
+      <label class="form-label" for="">Código usuário</label>
+      {% if current_user.nome == "ADMIN" %}
+        <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}"><br>
+      {% else %}
+        <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}" readonly><br>
+      {% endif %}
+      <label class="form-label" for="">Nome do usunário</label>
+      <input type="text" class="form-control" name="nome"><br>
+      <label class="form-label" for="">CPF usuário </label>
+      <input type="text" minlength="6" maxlength="14" class="form-control" name="cpf"id="cpf"><br>
+      <label class="form-label" for="">Endereço</label>
+      <input type="text" class="form-control" name="endereco"><br>
+      <label class="form-label" for="">Celular</label>
+      <input type="text" class="form-control" name="contato" id="celular"><br>
+      <label class="form-label" for="">E-mail</label>
+      <input type="email" class="form-control" name="email"><br>
+      <label class="form-label" for="">Senha</label>
+      <input type="password" class="form-control" name="senha"><br>
+      <hr>
+      {% if not current_user.nome %}
+        <button type="submit" name="bt1" value="1" class="btn btn-secondary">Enviar</button>
+      {% else %}
+        <button type="submit" name="bt1" value="2" class="btn btn-secondary">Enviar</button>
+      {% endif %}
+    </div>
+    <br>
+</form>
+{% endblock conteudo %}

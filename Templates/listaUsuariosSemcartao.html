@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2>listar cartões</h2>
+<br>
+<div class="row">
+  <label class="form-label" for="form3Example4">Código do usunário</label>
+  <fieldset class="form-group col-md-6">
+      <form action="{{url_for('router.user.listUser')}}" method="GET">
+          <input type="text" class="form-control" name="codUser" >
+  </fieldset>
+  <fieldset class="form-group col-md-4">
+      <button type="submit" class="btn btn-secondary">Filtrar</button>
+  </fieldset>
+  </form>
+</div>
+<br>
+<div class="bg-white "> <!--table-responsive-->
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">CÓDIGO USUÁRIO</th>
+        <th scope="col">NOME USUÁRIO</th>
+        <th scope="col">AÇÃO</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuarios in usuarios %}
+      <tr>
+        <td style="text-align: center;" >{{usuarios.codUser}}</td>
+        <td style="text-align: center;">{{ usuarios.nome }}</td>
+        <td style="text-align: center;">
+          <a href="" class="btn btn-secondary btn-xs">Editar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock conteudo %}

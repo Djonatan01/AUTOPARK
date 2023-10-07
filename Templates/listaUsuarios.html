@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <br>
-<a href="{{url_for('router.func.createFunc')}}" class="btn btn-secondary btn-xs">Cadastrar novo funcionário</a>
+{% if current_user.status == "ADMIN" %}
+<a href="{{url_for('router.user.listCodUser', id=current_user.nome)}}" class="btn btn-secondary btn-xs">Cadastrar novo usuário</a>
 <hr>
+{% endif%}
 <div class="row">
-    <label class="form-label" for="form3Example4">Nome do funcionário</label>
+    <label class="form-label" for="form3Example4">Nome do usunário</label>
     <fieldset class="form-group col-md-6">
-        <form action="{{url_for('router.func.listFunc')}}" method="GET">
-            <input type="text" class="form-control" name="nomeFuncionario" value="{{_nomeFunc}}">
+        <form action="{{url_for('router.user.listUser')}}" method="GET">
+            <input type="text" class="form-control" name="nomeUsuario" value="{{_nomeUser}}">
     </fieldset>
     <fieldset class="form-group col-md-4">
         <button type="submit" class="btn btn-secondary">Filtrar</button>
@@ -20,27 +22,29 @@
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
       <tr>
-        <th scope="col">NOME</th>
         <th scope="col">CÓDIGO USUÁRIO</th>
+        <th scope="col">NOME</th>
         <th scope="col">ENDEREÇO</th>
         <th scope="col">CONTATO</th>
         <th scope="col">E-MAIL</th>
+        {% if current_user.status == "ADMIN" %}
         <th scope="col">AÇÕES</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
-      {% for registro in listData['regFunc'].items %}
+      {% for registro in listData['regUser'].items %}
       {% if not registro.nome == "ADMIN" %}
       <tr>
+        <td>{{registro.codUser}}</td>
         <td>{{registro.nome}}</td>
-        <td>{{registro.mat}}</td>
         <td>{{registro.endereco}}</td>
         <td>{{registro.contato}}</td>
         <td>{{registro.email}}</td>
-        {% if current_user.nome == "ADMIN" %}
+        {% if current_user.status == "ADMIN" %}
         <td>
-          <a href="{{registro.id}}/updateFunc" class="btn btn-secondary btn-xs">Editar</a>
-          <a href="{{registro.id}}/removeFunc"
+          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
+          <a href="{{registro.id}}/removeUser"
             onclick="return confirm('Deseja realmente excluir esse registro ?')"
             class="btn btn-danger btn-xs">Excluir</a>
         </td>
@@ -51,25 +55,22 @@
     </tbody>
   </table>
 </div>
-
-
 <div style="display: flex;">
-    {% if listData['regFunc'].has_prev %}
-    <a href="{{listData['regFunc'].prev_num}}?nomeFuncionario={{_nomeFunc}}">«Anterior |</a>
+    {% if listData['regUser'].has_prev %}
+    <a href="{{listData['regUser'].prev_num}}?nomeUsuario={{_nomeUser}}">«Anterior |</a>
     {% else %}
     <p>«Anterior |</p>
     {% endif %}
 
-    {% if listData['regFunc'].has_next %}
+    {% if listData['regUser'].has_next %}
       {% if listData['page'] == 1%}
-        <a href="list/{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+        <a href="list/{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
       {% else %}
-        <a href="{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+        <a href="{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
       {% endif %}
     {% else %}
     <p>| Próximo»</p>
     {% endif %}
 </div>
-
 
 {% endblock conteudo %}

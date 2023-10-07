@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from Src.Controller.Users import UsersController
-from Src.Model.BancoDados import UserBd
+from Src.Controller.Users import UserController
+from Src.Model.BancoDados import Usuarios
 from flask_login import login_required
+from Src.Model import Regex
 
 User = Blueprint('user', __name__)
 
@@ -12,49 +13,79 @@ def listUser(page):
   _userFilter=request.values.get('nomeUsuario')
   if _userFilter == 'None' or _userFilter is None:
     _userFilter=""
-  return render_template('listaUsuario.html', listData=UsersController.List(page, _userFilter),_nomeUser=_userFilter)
+  return render_template('listaUsuarios.html', listData=UserController.List(page,_userFilter),_nomeUser=_userFilter)
+
+@User.route('/listCodUser')
+def listCodUser():
+  ultimo_cod_user = Usuarios.query.order_by(Usuarios.codUser.desc()).first().codUser
+  partes = ultimo_cod_user.split("-")
+  _ultimoNumero = int(partes[-1]) + 1
+  novoCodUser = "127-USER-000" + str(_ultimoNumero)
+  return render_template('criarUsuarios.html',novoCodUser = novoCodUser)
 
 @User.route('/createUser', methods=['GET', 'POST'])
-@login_required
 def createUser():
-  _registro=request.form.get('mat')
-  _rfid=request.form.get('rfid')
+  _coduser=request.form.get('codUser')
   _nome=request.form.get('nome')
+  _cpf=request.form.get('cpf')
   _endereco=request.form.get('endereco')
   _contato=request.form.get('contato')
+  _email=request.form.get('email')
+  _senha=request.form.get('senha')
+  _tipoBotao=request.form.get('bt1')
+
+  partes = _coduser.split("-")
+  _status = str(partes[1]).upper()
 
   if request.method == 'POST':
-    if any((x is None or len(x)<1) for x in [_rfid, _registro, _nome, _endereco, _contato]):
-      flash('Preencha todos os campos do formulário', 'error')
+    if UserController.checkEmail(_email):
+      flash('Email já cadastrado', 'error')
     else:
-      if UsersController.createUser(_registro,_rfid,_nome,_endereco,_contato) :
-        return redirect(url_for('router.user.listUser'))
+      if any((x is None or len(x)<1) for x in [_coduser,_cpf ,_nome, _endereco, _contato , _email, _senha,_status]):
+        flash('Preencha todos os campos do formulário', 'error')
       else:
-        flash('Cartão RFID ou Usuário já cadastrado', 'error')
-  return render_template('criarUsuario.html')
+        if Regex.contatoRegex(_contato):
+          if Regex.emailRegex(_email):
+            if UserController.createUser(_coduser,_cpf,_nome,_endereco,_contato,_email,_senha,_status):
+              return redirect(url_for('router.user.listUser'))
+            else:
+              flash('Usuário já cadastrado', 'error')
+          else:
+            flash('E-mail inválido', 'error')
+        else:
+            flash('Celular inválido', 'error')
+  if _tipoBotao == '2':
+    ultimo_cod_user = Usuarios.query.order_by(Usuarios.codUser.desc()).first().codUser
+    partes = ultimo_cod_user.split("-")
+    _ultimoNumero = int(partes[-1]) + 1
+    novoCodUser = "127-USER-000" + str(_ultimoNumero)
+    return render_template('criarUsuarios.html',novoCodUser = novoCodUser)
+  if _tipoBotao == '1':
+    render_template('login.html')
 
 @User.route('/<int:id>/updateUser', methods=['GET','POST'])
 @login_required
 def updateUser(id):
-  _registro=request.form.get('mat')
-  _rfid=request.form.get('rfid')
+  _cpf=request.form.get('cpf')
   _nome=request.form.get('nome')
   _endereco=request.form.get('endereco')
   _contato=request.form.get('contato')
-  _user = UserBd.query.filter_by(id=id).first()
-  
+  _email=request.form.get('email')
+  _senha=request.form.get('senha')
+  _user = Usuarios.query.filter_by(id=id).first()
+
   if request.method == 'POST':
-    if any((x is None or len(x)<1) for x in [_rfid, _registro, _nome, _endereco, _contato]):
+    if any((x is None or len(x)<1) for x in [_cpf, _nome, _endereco, _contato , _email, _senha]):
         flash('Preencha todos os campos do formulário', 'error')
     else:
-        if UsersController.updateUser(id, _registro, _rfid, _nome, _endereco, _contato):
+        if UserController.updateUser(id, _cpf,_user.codUser,_nome,_endereco,_contato,_email,_senha,_user.status):
           return redirect(url_for('router.user.listUser'))
         else:
-          flash('Cartão RFID ou Usuário já cadastrado', 'error')
-  return render_template('atualizarUsuario.html', user=_user)
+          flash('Usuário já cadastrado', 'error')
+  return render_template('atualizarUsuarios.html', user=_user)
 
 @User.route('/<int:id>/removeUser', methods=['GET','POST'])
 @login_required
 def removeUser(id):
-  UsersController.removeUser(id)
+  UserController.removeUser(id)
   return redirect(url_for('router.user.listUser'))
