@@ -16,9 +16,13 @@ class CartoesController:
       return False
 
   def ListCartoes():
-    #_codUser=request.values.get('codUser')
-    #usuarios_alias = aliased(Usuarios)
     usuarios_sem_cartao_rfid = db.session.query(Usuarios).outerjoin(CartaoRFID, Usuarios.id == CartaoRFID.id).\
         filter(CartaoRFID.idCard == None).all()
+
+    return usuarios_sem_cartao_rfid
+
+  def FiltrarUsuarios(codUser):
+
+    usuarios_sem_cartao_rfid = Usuarios.query.filter(Usuarios.codUser.like('%'+codUser+'%'))
 
     return usuarios_sem_cartao_rfid

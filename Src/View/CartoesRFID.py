@@ -24,3 +24,9 @@ def ListCartao():
     # Chame a função CartoesController.ListCartoes() e passe o resultado para render_template
     usuarios = CartoesController.ListCartoes()
     return render_template('listaUsuariosSemcartao.html',usuarios=usuarios)
+
+@bp_cadCartoes.route('/FiltrarUser', methods=['GET'])
+def FiltrarUser():
+    _codUsuario = request.values.get('codUser')
+    usuarios = CartoesController.FiltrarUsuarios(_codUsuario)
+    return render_template('listaUsuariosSemcartao.html',usuarios=usuarios)

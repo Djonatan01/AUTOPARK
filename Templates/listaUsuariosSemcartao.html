@@ -3,9 +3,9 @@
 <h2>listar cartões</h2>
 <br>
 <div class="row">
-  <label class="form-label" for="form3Example4">Código do usunário</label>
+  <label class="form-label" for="form3Example4">Código do usuário</label>
   <fieldset class="form-group col-md-6">
-      <form action="{{url_for('router.user.listUser')}}" method="GET">
+      <form action="{{url_for('router.cadCartao.FiltrarUser')}}" method="GET">
           <input type="text" class="form-control" name="codUser" >
   </fieldset>
   <fieldset class="form-group col-md-4">
@@ -29,7 +29,7 @@
         <td style="text-align: center;" >{{usuarios.codUser}}</td>
         <td style="text-align: center;">{{ usuarios.nome }}</td>
         <td style="text-align: center;">
-          <a href="" class="btn btn-secondary btn-xs">Editar</a>
+          <a href="" class="btn btn-secondary btn-sm">Editar</a>
         </td>
       </tr>
       {% endfor %}

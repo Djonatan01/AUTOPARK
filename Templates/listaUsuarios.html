@@ -43,10 +43,8 @@
         <td>{{registro.email}}</td>
         {% if current_user.status == "ADMIN" %}
         <td>
-          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
-          <a href="{{registro.id}}/removeUser"
-            onclick="return confirm('Deseja realmente excluir esse registro ?')"
-            class="btn btn-danger btn-xs">Excluir</a>
+          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-sm">Editar</a>
+          <a href="{{registro.id}}/removeUser" onclick="return confirm('Deseja realmente excluir esse registro ?')" class="btn btn-danger btn-sm">Excluir</a>
         </td>
         {% endif %}
       </tr>

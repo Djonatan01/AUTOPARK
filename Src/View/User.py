@@ -3,6 +3,7 @@ from Src.Controller.Users import UserController
 from Src.Model.BancoDados import Usuarios
 from flask_login import login_required
 from Src.Model import Regex
+from werkzeug.security import generate_password_hash
 
 User = Blueprint('user', __name__)
 
@@ -33,7 +34,6 @@ def createUser():
   _email=request.form.get('email')
   _senha=request.form.get('senha')
   _tipoBotao=request.form.get('bt1')
-
   partes = _coduser.split("-")
   _status = str(partes[1]).upper()
 
@@ -66,19 +66,17 @@ def createUser():
 @User.route('/<int:id>/updateUser', methods=['GET','POST'])
 @login_required
 def updateUser(id):
-  _cpf=request.form.get('cpf')
-  _nome=request.form.get('nome')
-  _endereco=request.form.get('endereco')
-  _contato=request.form.get('contato')
-  _email=request.form.get('email')
-  _senha=request.form.get('senha')
   _user = Usuarios.query.filter_by(id=id).first()
-
   if request.method == 'POST':
-    if any((x is None or len(x)<1) for x in [_cpf, _nome, _endereco, _contato , _email, _senha]):
+    _cpf=request.form.get('cpf')
+    _nome=request.form.get('nome')
+    _endereco=request.form.get('endereco')
+    _contato=request.form.get('contato')
+    _email=request.form.get('email')
+    if any((x is None or len(x)<1) for x in [_cpf, _nome, _endereco, _contato , _email]):
         flash('Preencha todos os campos do formulário', 'error')
     else:
-        if UserController.updateUser(id, _cpf,_user.codUser,_nome,_endereco,_contato,_email,_senha,_user.status):
+        if UserController.updateUser(id, _cpf,_user.codUser,_nome,_endereco,_contato,_email,_user.status):
           return redirect(url_for('router.user.listUser'))
         else:
           flash('Usuário já cadastrado', 'error')

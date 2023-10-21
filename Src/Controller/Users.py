@@ -15,10 +15,9 @@ class UserController:
       db.session.rollback()
       return False
 
-  def updateUser(id, _cpf,_codUser, _nome, _endereco, _contato, _email, _senha,_status):
+  def updateUser(id, _cpf,_codUser, _nome, _endereco, _contato, _email,_status):
     try:
-      passwd=generate_password_hash(_senha)
-      Usuarios.query.filter_by(id=id).update({'cpf':_cpf.upper(),'codUser':_codUser.upper(),'nome':_nome.upper(), 'endereco':_endereco.upper(),'contato':_contato.upper(),'email':_email,'senha':passwd,'status':_status.upper()})
+      Usuarios.query.filter_by(id=id).update({'cpf':_cpf.upper(),'codUser':_codUser.upper(),'nome':_nome.upper(), 'endereco':_endereco.upper(),'contato':_contato.upper(),'email':_email,'status':_status.upper()})
       db.session.commit()
       return True
     except IntegrityError:
