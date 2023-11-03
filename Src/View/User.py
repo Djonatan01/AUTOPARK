@@ -54,14 +54,12 @@ def createUser():
             flash('E-mail inválido', 'error')
         else:
             flash('Celular inválido', 'error')
-  if _tipoBotao == '2':
-    ultimo_cod_user = Usuarios.query.order_by(Usuarios.codUser.desc()).first().codUser
-    partes = ultimo_cod_user.split("-")
-    _ultimoNumero = int(partes[-1]) + 1
-    novoCodUser = "127-USER-000" + str(_ultimoNumero)
-    return render_template('criarUsuarios.html',novoCodUser = novoCodUser)
-  if _tipoBotao == '1':
-    render_template('login.html')
+
+  ultimo_cod_user = Usuarios.query.order_by(Usuarios.codUser.desc()).first().codUser
+  partes = ultimo_cod_user.split("-")
+  _ultimoNumero = int(partes[-1]) + 1
+  novoCodUser = "127-USER-000" + str(_ultimoNumero)
+  return render_template('criarUsuarios.html',novoCodUser = novoCodUser)
 
 @User.route('/<int:id>/updateUser', methods=['GET','POST'])
 @login_required
