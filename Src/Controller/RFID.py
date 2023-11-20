@@ -10,7 +10,7 @@ class RFID:
 
         if rfid == None:
             print("Não existe cadastro")
-            return "Não cadastrado"
+            return "Não registrado"
         else:
             # Grab date/time
             sao_paulo = timezone("America/Sao_Paulo")
@@ -28,7 +28,7 @@ class RFID:
             reg = Registro(rfid.id, rfidCode, data, hora, status)
             db.session.add(reg)
             db.session.commit()
-            return "Cadastrado"
+            return "Registrado"
 
     def List(page, _data, per_page=10):
         sao_paulo = timezone("America/Sao_Paulo")
