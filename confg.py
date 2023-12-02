@@ -10,11 +10,9 @@ app = Flask(__name__,
             template_folder=template_dir,
             static_url_path="/Public",
             static_folder='Public')
-#Nome da Chave do proprio TG
-app.secret_key = 'tg1_fatecCruzeiro'
-#Nome do banco TG autopark_
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_autopark.sqlite3"
-#Não ficar realizando rastreamento no banco de dados
+
+app.secret_key = os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACKMODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -23,5 +21,5 @@ migrate = Migrate(app,db)
 
 login_manager = LoginManager()
 login_manager.login_view = 'router.login.login'
-login_manager.login_message = 'Realize o login para acessar essa página!'
+login_manager.login_message = 'Please log in to access this page!'
 login_manager.init_app(app)
