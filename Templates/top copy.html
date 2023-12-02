@@ -1,29 +1,11 @@
 <div id="containers">
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{url_for('router.home.index')}}">
                 <img src="{{url_for('static', filename='Images/LogoNavi.png')}}" alt="Logo" class="logo">
             </a>
-            <div class="ms-auto">
-                {% if not current_user.nome %}
-                <div class="text-end login-button">
-                    <a type="button" class="btn btn-outline-light me-2"
-                        href="{{url_for('router.login.login')}}">Login</a>
-                </div>
-                {% else %}
-                <div class="text-end me-4 user-info">
-                    Usuário logado: {{current_user.nome}}
-
-                    <a type="button" class="btn btn-outline-light me-2"
-                        href="{{url_for('router.login.logout')}}">Logout</a>
-                </div>
-                {% endif %}
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav text-end">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('router.home.index')}}">Home</a>
                     </li>
@@ -42,10 +24,24 @@
                         <a class="nav-link" href="{{ url_for('router.user.listUser')}}">Usuários</a>
                     </li>
                     {% endif %}
-                    <li class="nav-item">
+                    <li class="nav-item nav-item-custom">
                         <a class="nav-link" href="{{url_for('router.about.sobre')}}">Sobre Nós</a>
                     </li>
                 </ul>
+                {% if not current_user.nome %}
+                <div class="text-end login-button">
+                    <a type="button" class="btn btn-outline-light me-2"
+                        href="{{url_for('router.login.login')}}">Login</a>
+                </div>
+                {% else %}
+                <div class="text-end me-4 user-info">
+                    Usuário logado:<br>{{current_user.nome}}
+                </div>
+                <div class="text-end">
+                    <a type="button" class="btn btn-outline-light me-2"
+                        href="{{url_for('router.login.logout')}}">Logout</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </nav>

@@ -173,3 +173,32 @@ footer {
     padding: 3rem 2rem;
   }
 }
+
+.logo {
+  width: 200px;
+  height: 40px;
+}
+
+.nav-item-custom {
+  width: 120px;
+}
+
+.login-button {
+  width: 200px;
+}
+
+.user-info {
+  text-align:right;
+  color:white;
+  width:300px;
+}
+
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-toggler {
+      display: block;
+  }
+  .navbar-expand-lg .navbar-collapse {
+      display: none !important;
+  }
+}
