@@ -6,15 +6,17 @@
 <hr>
 {% endif%}
 <div class="row">
-    <label class="form-label" for="form3Example4">Nome do usunário</label>
-    <fieldset class="form-group col-md-6">
-        <form action="{{url_for('router.user.listUser')}}" method="GET">
-            <input type="text" class="form-control" name="nomeUsuario" value="{{_nomeUser}}">
-    </fieldset>
-    <fieldset class="form-group col-md-4">
+  <label class="form-label" for="form3Example4">Nome do usuário</label>
+  <form action="{{url_for('router.user.listUser')}}" method="GET">
+    <div class="form-group row">
+      <div class="form-group col-md-3">
+        <input type="text" class="form-control" name="nomeUsuario" value="{{_nomeUser}}">
+      </div>
+      <div class="col-auto">
         <button type="submit" class="btn btn-secondary">Filtrar</button>
-    </fieldset>
-    </form>
+      </div>
+    </div>
+  </form>
 </div>
 <br>
 
@@ -43,8 +45,8 @@
         <td>{{registro.email}}</td>
         {% if current_user.status == "ADMIN" %}
         <td>
-          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-sm">Editar</a>
-          <a href="{{registro.id}}/removeUser" onclick="return confirm('Deseja realmente excluir esse registro ?')" class="btn btn-danger btn-sm">Excluir</a>
+          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-sm" aria-label="Editar usuário {{registro.nome}}">Editar</a>
+          <a href="{{registro.id}}/removeUser" onclick="return confirm('Deseja realmente excluir esse registro ?')" class="btn btn-danger btn-sm" aria-label="Excluir usuário {{registro.nome}}">Excluir</a>
         </td>
         {% endif %}
       </tr>
@@ -53,22 +55,18 @@
     </tbody>
   </table>
 </div>
-<div style="display: flex;">
-    {% if listData['regUser'].has_prev %}
-    <a href="{{listData['regUser'].prev_num}}?nomeUsuario={{_nomeUser}}">«Anterior |</a>
-    {% else %}
-    <p>«Anterior |</p>
-    {% endif %}
+<div class="pagination">
+  {% if listData['regUser'].has_prev %}
+  <a href="{{listData['regUser'].prev_num}}?nomeUsuario={{_nomeUser}}" aria-label="Página anterior">«Anterior»</a>
+  {% else %}
+  <p>«Anterior»</p>
+  {% endif %}
 
-    {% if listData['regUser'].has_next %}
-      {% if listData['page'] == 1%}
-        <a href="list/{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
-      {% else %}
-        <a href="{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
-      {% endif %}
-    {% else %}
-    <p>| Próximo»</p>
-    {% endif %}
+  {% if listData['regUser'].has_next %}
+  <a href="{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}" aria-label="Próxima página">«Próximo»</a>
+  {% else %}
+  <p>«Próximo»</p>
+  {% endif %}
 </div>
 
 {% endblock conteudo %}
