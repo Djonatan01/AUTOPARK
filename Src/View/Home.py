@@ -4,4 +4,9 @@ Home = Blueprint('home', __name__)
 
 @Home.route('/')
 def index():
-  return render_template('index.html')  
+  return render_template('index.html')
+
+@Home.route('/reserve')
+def reserve():
+  # Processar a reserva da vaga aqui...
+ return render_template('reserve.html')

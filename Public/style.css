@@ -203,10 +203,24 @@ footer {
   }
 }
 
-
 .pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em 0;
 }
+
+.reservas-online {
+  color: #25d366; /* Cor inicial do texto */
+  font-weight: bold; /* Texto em negrito */
+  font-size: 30px; /* Tamanho da fonte */
+  animation: colorchange 3s infinite; /* Animação de mudança de cor */
+ }
+
+ /* Definição da animação de mudança de cor */
+ @keyframes colorchange {
+  0% {color: #25d366;}
+  33% {color: #1421d8;}
+  66% {color: #0e0c0c;}
+  100% {color: #25d366;}
+ }
