@@ -13,7 +13,6 @@
                 {% else %}
                 <div class="text-end me-4 user-info">
                     Usuário logado: {{current_user.nome}}
-
                     <a type="button" class="btn btn-outline-light me-2"
                         href="{{url_for('router.login.logout')}}">Logout</a>
                 </div>
@@ -27,19 +26,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('router.home.index')}}">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('router.home.reserve')}}">Reservas de vagas</a>
+                    </li>
                     {% if current_user.nome == "ADMIN" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('router.traffic.list')}}">Registros</a>
+                        <a class="nav-link" href="{{url_for('router.traffic.list')}}">Registros de usuárioas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('router.user.listUser')}}">Usuários</a>
+                        <a class="nav-link" href="{{url_for('router.user.listUser')}}">Usuários cadastrados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('router.cadCartao.ListCartao')}}">Cartão RFID</a>
-                    </li>
-                    {% elif current_user.nome %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('router.user.listUser')}}">Usuários</a>
+                        <a class="nav-link" href="{{url_for('router.cadCartao.ListCartao')}}">Cadastro de Cartão RFID</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">

@@ -5,11 +5,13 @@
  <h1>Reservar Vaga</h1>
  <form action="/reserve" method="post">
    <label for="parking_space">Vaga:</label>
-   <select name="parking_space" id="parking_space">
-     <option value="1">Vaga 1</option>
-     <option value="2">Vaga 2</option>
-     <!-- Adicione mais opções de vagas conforme necessário -->
-   </select>
+   <div class="parking-space">
+    <select name="parking_space" id="parking_space">
+      <option value="1">Vaga 1</option>
+      <option value="2">Vaga 2</option>
+      <!-- Adicione mais opções de vagas conforme necessário -->
+    </select>
+   </div>
    <input type="submit" value="Reservar">
  </form>
 </div>
