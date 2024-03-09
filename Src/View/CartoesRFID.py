@@ -1,5 +1,5 @@
 from flask import render_template, request, flash, redirect, url_for, Blueprint
-from confg import db
+from config import db
 from Src.Controller.Cartoes import CartoesController
 
 bp_cadCartoes = Blueprint("cadCartao",__name__)

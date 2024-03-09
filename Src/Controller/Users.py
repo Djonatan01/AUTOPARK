@@ -1,5 +1,5 @@
 from Src.Model.BancoDados import Usuarios, CartaoRFID
-from confg import db
+from config import db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash
 import logging

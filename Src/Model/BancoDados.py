@@ -1,4 +1,4 @@
-from confg import db
+from config import db
 from flask_login import UserMixin
 
 #CADASTRO DE CARTOES RFID
@@ -17,6 +17,7 @@ class CartaoRFID(db.Model):
     self.dataMensagem = _dataMensagem
 
 class Registro(db.Model):
+  __tablename__= "registro"
   idRegistro = db.Column(db.Integer, primary_key=True, autoincrement=True)
   id = db.Column(db.Integer,db.ForeignKey('Usuarios.id'))
   rfid = db.Column(db.String(8))
@@ -51,4 +52,34 @@ class Usuarios(UserMixin,db.Model):
     self.contato = _contato
     self.email = _email
     self.senha = _senha
+    self.status = _status
+
+class Vagas(db.Model):
+  __tablename__="Vagas"
+  idVaga = db.Column(db.Integer, primary_key=True,autoincrement=True)
+  nVaga = db.Column(db.Integer, unique=True)
+  tVaga = db.Column(db.String(1))
+
+
+  def __init__(self, _nVaga,_tVaga):
+    self.nVaga = _nVaga
+    self.tVaga = _tVaga
+
+class situacaoVagas(db.Model):
+  __tablename__="SituaçãoVagas"
+  idSitVaga = db.Column(db.Integer, primary_key=True,autoincrement=True)
+  nVaga = db.Column(db.Integer,db.ForeignKey('Vagas.nVaga'))
+  codUser = db.Column(db.Integer,db.ForeignKey('Usuarios.id'))
+  hEntrada = db.Column(db.String(15))
+  hSaida = db.Column(db.String(15))
+  hChegada = db.Column(db.String(15))
+  status = db.Column(db.String(1))
+
+  def __init__(self, _idSitVaga, _nVaga, _codUser, _hEntrada, _hSaida, _hChegada, _status):
+    self.idSitVaga = _idSitVaga
+    self.nVaga = _nVaga
+    self.codUser = _codUser
+    self.hEntrada = _hEntrada
+    self.hSaida = _hSaida
+    self.hChegada = _hChegada
     self.status = _status

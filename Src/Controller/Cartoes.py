@@ -1,6 +1,6 @@
 from flask import request
 from Src.Model.BancoDados import Usuarios,CartaoRFID
-from confg import db
+from config import db
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import aliased
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect,url_for
 from Src.Model.BancoDados import Usuarios
 from werkzeug.security import check_password_hash
-from confg import login_manager
+from config import login_manager
 from flask_login import login_user, logout_user, login_required, current_user
 
 Login = Blueprint('login', __name__)

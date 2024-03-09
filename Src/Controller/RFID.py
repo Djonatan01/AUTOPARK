@@ -1,7 +1,7 @@
 from Src.Model.BancoDados import Registro ,CartaoRFID,Usuarios
 from datetime import datetime
 from pytz import timezone
-from confg import db
+from config import db
 
 class RFID:
     def Register(rfidCode):
