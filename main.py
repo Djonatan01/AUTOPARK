@@ -1,4 +1,4 @@
-from confg import db, app
+from config import db, app
 from Src.Router import Router
 
 app.register_blueprint(Router)
