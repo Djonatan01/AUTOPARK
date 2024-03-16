@@ -19,7 +19,6 @@ def cadastroCartao():
             else:
                 flash('Cartão RFID ou Usuário já cadastrado', 'error')
             return render_template('cadastroCartaoRFID.html',codUser = _codUser,idUser=_idUser)
-# end def
 
 @bp_cadCartoes.route('/atualizarCartao/<codigoUser>/<idUser>',methods = ['GET'])
 def atualizarCartao(codigoUser,idUser):

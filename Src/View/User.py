@@ -36,7 +36,6 @@ def createUser():
   _tipoBotao=request.form.get('bt1')
   partes = _coduser.split("-")
   _status = str(partes[1]).upper()
-
   if request.method == 'POST':
     if UserController.checkEmail(_email):
       flash('Email já cadastrado', 'error')
