@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<div class="container">
-  <div>
+<div>
   <a href="{{url_for('router.vagas.Cadastrar')}}" class="Cadastrar novas vagas"> Cadastrar Vagas</a>
   </div>
+  <!--Alter -->
+<div class="container">
+  
  <h1>Reservar Vaga</h1>
  <form action="/reserve" method="post">
    <label for="parking_space">Vaga:</label>
