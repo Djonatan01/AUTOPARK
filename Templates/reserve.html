@@ -6,28 +6,29 @@
   </div>
   <!--Alter -->
 <h1>Reservar Vaga</h1>
-<div class="container" id="containerVagas">
+<div class="container" id="container-vagas">
   
-  <div>
-    teste container1
-  </div>
-
-  <div>
-    teste container2
-  </div>
-  <div>
-    teste container3
-  </div>
-  <div>
-    teste container4
-  </div>
-  <div>
-    teste container5
-  </div>
-
 </div>
-{% endblock conteudo %}
 
 <script> 
+  function adicionarVaga(){
+    let numeroVagas = 150
+    cont = 0
+    const container = document.getElementById("container-vagas")
+      /* select count(idvagas) where tipo = "n" */
+    while(cont < numeroVagas){
+      let vagas = document.createElement("div")
+      vagas.className = "espaco-vagas"
+      vagas.innerHTML = "vaga: " + (cont+1)
+      
+      container.appendChild(vagas)
+      cont ++;
+    }
+  }
 
+  adicionarVaga();
 </script>
+{% endblock conteudo %}
+
+
+
