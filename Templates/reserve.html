@@ -2,7 +2,8 @@
 
 {% block conteudo %}
 <div>
-  <a href="{{url_for('router.vagas.Cadastrar')}}" class="Cadastrar novas vagas"> Cadastrar Vagas</a>
+  <br>
+  <a  href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Cadastrar Vaga </a>
   </div>
   <!--Alter -->
 <h1>Reservar Vaga</h1>
@@ -12,21 +13,22 @@
 
 <script> 
   function adicionarVaga(){
-    let numeroVagas = 150
+    let container = document.getElementById("container-vagas")
+    let numeroVagas = 12
     cont = 0
-    const container = document.getElementById("container-vagas")
-      /* select count(idvagas) where tipo = "n" */
-    while(cont < numeroVagas){
-      let vagas = document.createElement("div")
-      vagas.className = "espaco-vagas"
-      vagas.innerHTML = "vaga: " + (cont+1)
+    /* select count(idRegistro) from registro */
+      while(cont < numeroVagas){
+        let vagas = document.createElement("div")
+        vagas.className = "espaco-vagas"
+        vagas.innerHTML = "vaga: " + (cont+1)
       
-      container.appendChild(vagas)
-      cont ++;
-    }
+        container.appendChild(vagas)
+        cont ++;
+      }
   }
+  adicionarVaga()
+  
 
-  adicionarVaga();
 </script>
 {% endblock conteudo %}
 
