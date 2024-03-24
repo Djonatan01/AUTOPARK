@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<form method="POST" action="{{url_for('router.cadCartao.cadastroCartao')}}">
+<form method="POST" action="{{url_for('router.vagas.cadastro')}}">
     <div class="row">
       <div class="col-sm-2">
         <br>
-        <label class="form-label" for="form3Example4">Número da Vaga:</label>
-        <input type="text" minlength="18" maxlength="8" class="form-control" placeholder="Número da Vaga"><br>
+
+        <label class="form-label" for="form3Example4">Número da  Vaga:</label>
+        <input type="text" name="NumVaga"  class="form-control"  required><br>
+
         <label class="form-label" for="form3Example4">Tipo da Vaga:</label>
-        <select class="form-control" id="exampleFormControlSelect1" style="width:15rem;height:2.5rem">
-            <option value="" disabled selected>Selecione uma opção!</option>
-			      <option value="G">Vagas Gerais</option>
-			      <option value="A">Vagas de Acessibilidade</option>
-		    </select><br>
+        <select class="form-control" id="exampleFormControlSelect1" style="width:15rem;height:2.5rem" name = "TipoVaga" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+			<option value="G">Vagas Gerais(G)</option>
+			<option value="A">Vagas de Acessibilidade(A)</option>
+		</select><br>
+
       </div>
     </div>
-    <button type="submit" name="bt1" value="{{ idUser}}" class="btn btn-secondary" style="width:15rem;height:2.5rem">Cadastrar Vaga</button>
+    <button type="submit"  class="btn btn-secondary"style="width:10rem;height:2.5rem">Cadastrar Vaga</button>
+    <a  href="{{url_for('router.vagas.reserve')}}" class="btn btn-secondary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Voltar </a>
     <br><br>
 </form>
+
+
 {% endblock conteudo %}
