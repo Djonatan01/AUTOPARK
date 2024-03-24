@@ -247,4 +247,22 @@ footer {
   height: 100px;
   border: 1px solid black;
  }
+
+ /* Tela Reserva */
+ #container-vagas{
+  background-color: #1421d8;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* teste */
+  justify-content: flex-start;
+  justify-content: space-evenly;
+ }
  
+ .espaco-vagas{
+  background-image: url(Images/mustang.jpg);
+  width: 190px;
+  height: 250px;
+  color: white;
+  margin: 7px 0px
+ }
