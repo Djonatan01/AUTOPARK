@@ -6,7 +6,10 @@ from sqlalchemy.orm import aliased
 class ControleVagas():
     def ConsultaTotalVagas():
         ContVaga = Vagas.query.count()
-        return ContVaga
+        # Consulta todas as vagas
+        descricaoVagas = [vaga.nVaga for vaga in Vagas.query.all()]
+
+        return ContVaga , descricaoVagas
 
     def CadastroVaga(numVaga,tipoVaga):
         novaVaga = Vagas(numVaga,tipoVaga.upper())
