@@ -24,5 +24,4 @@ def cadastro():
 def reserve():
  
  CountVagas = ControleVagas.ConsultaTotalVagas()
- print(CountVagas)
- return render_template('reserve.html')
+ return render_template('reserve.html', CountVagas = CountVagas)
