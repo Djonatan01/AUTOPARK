@@ -6,11 +6,9 @@ from sqlalchemy.orm import aliased
 class ControleVagas():
     def ConsultaTotalVagas():
         ContVaga = Vagas.query.count()
-
         return ContVaga
-    
+
     def CadastroVaga(numVaga,tipoVaga):
-        
         novaVaga = Vagas(numVaga,tipoVaga.upper())
         db.session.add(novaVaga)
         try:
