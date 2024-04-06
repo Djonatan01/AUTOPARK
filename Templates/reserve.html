@@ -14,9 +14,10 @@
 <script> 
   function adicionarVaga(){
     let container = document.getElementById("container-vagas")
-    let Vaga = document.getElementById("container-vagas").dataset.countVagas;
+     let Vaga = document.getElementById("container-vagas").dataset.countVagas;
+    
     cont = 0
-    while(cont < numeroVagas){
+    while(cont < Vaga){
       let vaga = document.createElement("div");
       vaga.className = "espaco-vagas";
 
