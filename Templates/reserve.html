@@ -3,7 +3,7 @@
 {% block conteudo %}
 <div>
   <br>
-  <a  href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Cadastrar Vaga </a>
+  <a  href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Cadastrar Vaga</a>
   </div>
   <!--Alter -->
 <h1>Reservar Vaga</h1>
@@ -16,15 +16,47 @@
     let container = document.getElementById("container-vagas")
     let numeroVagas = 12
     cont = 0
-    /* select count(idRegistro) from registro */
+    while(cont < numeroVagas){
+      let vaga = document.createElement("div");
+      vaga.className = "espaco-vagas";
+
+      if(cont === 7){
+      // Definindo o valor do atributo "value" para 1 (ocupado) ou 2 (livre)
+      vaga.setAttribute("value", "3"); // Alternando entre 1 e 2
+      }
+      else{
+        vaga.setAttribute("value", "1");
+      }
+      vaga.innerHTML = "Vaga: " + (cont + 1); // Atribuindo número da vaga
+
+      // Adicionando classe CSS com base no valor do atributo "value"
+      if (vaga.getAttribute("value") === "1") {
+        vaga.classList.remove("espaco-vagas")
+        vaga.classList.add("espaco-vagas-ocupada");
+      } 
+      else if  (vaga.getAttribute("value") === "2")
+      {
+        vaga.classList.remove("espaco-vagas")
+        vaga.classList.add("espaco-vagas-reservada");
+      }
+
+       // Criando um elemento de imagem
+       let imagem = document.createElement("img");
+       imagem.src = "AUTOPARK/Public/Images/A.png"; // Altere o caminho da imagem confome necessário
+       imagem.alt = "Imagem da vaga " + (cont + 1); // Adicione um texto alternativo para acessibilidade
+       
+      container.appendChild(vaga);
+      cont++;
+    } 
+    
+    /* select count(idRegistro) from registro 
       while(cont < numeroVagas){
         let vagas = document.createElement("div")
         vagas.className = "espaco-vagas"
         vagas.innerHTML = "vaga: " + (cont+1)
-      
-        container.appendChild(vagas)
+        container.appendChild(vagas);
         cont ++;
-      }
+      }*/
   }
   adicionarVaga()
   

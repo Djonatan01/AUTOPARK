@@ -250,7 +250,7 @@ footer {
 
  /* Tela Reserva */
  #container-vagas{
-  background-color: #1421d8;
+  /* background-color: #1421d8;  */
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -260,9 +260,47 @@ footer {
  }
  
  .espaco-vagas{
-  background-image: url(Images/mustang.jpg);
+  /* background-image: url(Images/G.png); */
   width: 190px;
   height: 250px;
-  color: white;
-  margin: 7px 0px
+  color: rgb(78, 78, 78);
+  padding-top: 220px;
+  align-items: right;
+  margin: 7px 0px;
+  box-shadow: 0px 2px 7px 5px green;
+  text-align: left; 
+  font-size: 25px;
+  font-weight: 800;
+ } 
+
+ /* Parte teste */
+  .espaco-vagas-ocupada {
+    /* background-image: url(Images/A.png); */
+    width: 190px;
+    height: 250px;
+    color: rgb(78, 78, 78);
+    padding-top: 220px;
+    align-items: right;
+    margin: 7px 0px;
+    box-shadow: 0px 2px 7px 5px red;
+    text-align: left; 
+    font-size: 25px;
+    font-weight: 800;
  }
+
+ .espaco-vagas-reservada{
+  /* background-image: url(Images/G.png); */
+  width: 190px;
+  height: 250px;
+  color: rgb(78, 78, 78);
+  padding-top: 220px;
+  align-items: right;
+  margin: 7px 0px;
+  box-shadow: 0px 2px 7px 5px yellow;
+  text-align: left; 
+  font-size: 25px;
+  font-weight: 800;;
+ }
+
+
+  
