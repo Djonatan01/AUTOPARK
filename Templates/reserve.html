@@ -3,67 +3,53 @@
 {% block conteudo %}
 <div>
   <br>
-  <a  href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Cadastrar Vaga</a>
-  </div>
-  <!--Alter -->
+  <a href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary" style="width:10rem;height:2.5rem"
+    role='buttom' aria-pressed="true"> Cadastrar Vaga</a>
+</div>
+<!--Alter -->
 <h1>Reservar Vaga</h1>
-<div class="container" id="container-vagas" data-count-vagas = "{{CountVagas}}">
-  
+<div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}" data-desc-vagas="{{descricaoVagas}}">
+
 </div>
 
-<script> 
-  function adicionarVaga(){
+<script>
+  function adicionarVaga() {
+    let descVaga = []
     let container = document.getElementById("container-vagas")
-     let Vaga = document.getElementById("container-vagas").dataset.countVagas;
-    
+    let Vaga = document.getElementById("container-vagas").dataset.countVagas;
+    descVaga = document.getElementById("container-vagas").dataset.descVagas
+
+    console.log(descVaga);
+
     cont = 0
-    while(cont < Vaga){
+    while (cont < Vaga) {
       let vaga = document.createElement("div");
       vaga.className = "espaco-vagas";
 
-      if(cont === 7){
-      // Definindo o valor do atributo "value" para 1 (ocupado) ou 2 (livre)
-      vaga.setAttribute("value", "3"); // Alternando entre 1 e 2
+      if (cont === 7) {
+        vaga.setAttribute("value", "3");
       }
-      else{
+      else {
         vaga.setAttribute("value", "1");
       }
-      vaga.innerHTML = "Vaga: " + (cont + 1); // Atribuindo número da vaga
 
-      // Adicionando classe CSS com base no valor do atributo "value"
+      vaga.innerHTML = (descVaga[5]);
+
       if (vaga.getAttribute("value") === "1") {
         vaga.classList.remove("espaco-vagas")
         vaga.classList.add("espaco-vagas-ocupada");
-      } 
-      else if  (vaga.getAttribute("value") === "2")
-      {
+      }
+      else if (vaga.getAttribute("value") === "2") {
         vaga.classList.remove("espaco-vagas")
         vaga.classList.add("espaco-vagas-reservada");
       }
 
-       // Criando um elemento de imagem
-       let imagem = document.createElement("img");
-       imagem.src = "AUTOPARK/Public/Images/A.png"; // Altere o caminho da imagem confome necessário
-       imagem.alt = "Imagem da vaga " + (cont + 1); // Adicione um texto alternativo para acessibilidade
-       
       container.appendChild(vaga);
       cont++;
-    } 
-    
-    /* select count(idRegistro) from registro 
-      while(cont < numeroVagas){
-        let vagas = document.createElement("div")
-        vagas.className = "espaco-vagas"
-        vagas.innerHTML = "vaga: " + (cont+1)
-        container.appendChild(vagas);
-        cont ++;
-      }*/
+    }
   }
   adicionarVaga()
-  
+
 
 </script>
 {% endblock conteudo %}
-
-
-
