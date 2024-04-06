@@ -34,7 +34,9 @@ def cadastro():
 @vaga.route('/reserve')
 @login_required
 def reserve():
+  CountVagas, descricaoVagas = ControleVagas.ConsultaTotalVagas()
+  novaLista = []
+  for va in descricaoVagas:
+    novaLista.append('[' + va + ']')
 
- CountVagas = ControleVagas.ConsultaTotalVagas()
- print(CountVagas)
- return render_template('reserve.html')
+  return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista)
