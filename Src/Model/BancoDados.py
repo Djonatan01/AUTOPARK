@@ -57,9 +57,8 @@ class Usuarios(UserMixin,db.Model):
 class Vagas(db.Model):
   __tablename__="Vagas"
   idVaga = db.Column(db.Integer, primary_key=True,autoincrement=True)
-  nVaga = db.Column(db.Integer, unique=True)
+  nVaga = db.Column(db.String(5), unique=True)
   tVaga = db.Column(db.String(1))
-
 
   def __init__(self, _nVaga,_tVaga):
     self.nVaga = _nVaga
