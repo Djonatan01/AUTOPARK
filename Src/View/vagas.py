@@ -1,11 +1,20 @@
 from flask import Blueprint, render_template,request,flash
 from flask_login import login_required
 from Src.Controller.Vagas import ControleVagas
+from Src.Model.BancoDados import Vagas
+
 vaga = Blueprint('vagas',__name__)
 
 @vaga.route('/Cadastrar')
 def Cadastrar():
-  return render_template('cadastrarVagas.html')
+  ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first().nVaga
+  if ultimaVaga is None:
+    ultimaVaga = 0
+  else:
+    ultimaVaga = ultimaVaga.split("-")
+    ultimaVaga = int(ultimaVaga[0])
+
+  return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
 @vaga.route('/cadastro',methods = ['POST'])
 def cadastro():
@@ -16,13 +25,16 @@ def cadastro():
       ControleVagas.CadastroVaga(_NumVaga,_TipoVaga)
     else:
       flash("Todos os campos devem estar preenchidos",'error')
-    return render_template('cadastrarVagas.html')
-  
+
+    ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first().nVaga
+    ultimaVaga = ultimaVaga.split("-")
+    ultimaVaga = int(ultimaVaga[0])
+    return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
 @vaga.route('/reserve')
 @login_required
 def reserve():
- 
+
  CountVagas = ControleVagas.ConsultaTotalVagas()
  print(CountVagas)
  return render_template('reserve.html')
