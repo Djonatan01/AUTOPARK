@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<div>
+<div style="text-align: right;">
   <br>
   <a href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-secondary" style="width:10rem;height:2.5rem"
     role='buttom' aria-pressed="true"> Cadastrar Vaga</a>
@@ -26,8 +26,20 @@
       let vaga = document.createElement("div");
       vaga.className = "espaco-vagas";
 
-      if (cont === 7) {
+      if (cont === 3) {
         vaga.setAttribute("value", "3");
+      }
+      else if(cont === 0){
+        vaga.setAttribute("value", "9");
+      }
+      else if(cont === 2){
+        vaga.setAttribute("value", "2");
+      }
+      else if(cont === 4){
+        vaga.setAttribute("value", "4");
+      }
+      else if(cont === 5){
+        vaga.setAttribute("value", "5");
       }
       else {
         vaga.setAttribute("value", "1");
@@ -42,6 +54,19 @@
       else if (vaga.getAttribute("value") === "2") {
         vaga.classList.remove("espaco-vagas")
         vaga.classList.add("espaco-vagas-reservada");
+      }
+      /*Mudança apartir daqui*/
+      else if(vaga.getAttribute("value") === "3"){
+        vaga.classList.remove("espaco-vagas")
+        vaga.classList.add("espaco-vagas-acessibilidade-livre");
+      }
+      else if(vaga.getAttribute("value") === "4"){
+        vaga.classList.remove("espaco-vagas")
+        vaga.classList.add("espaco-vagas-acessibilidade-ocupada");
+      }
+      else if(vaga.getAttribute("value") === "5"){
+        vaga.classList.remove("espaco-vagas")
+        vaga.classList.add("espaco-vagas-acessibilidade-reservada");
       }
 
       container.appendChild(vaga);
