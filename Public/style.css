@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap');
 
+/* Estilos CSS para a imagem flutuante à esquerda */
+.float-left {
+  float: left;
+}
+/* Adiciona margem à direita da imagem para separá-la do texto */
+.mr-3 {
+  margin-right: 15px; /* Você pode ajustar essa margem conforme necessário */
+}
+
+/* Alinha o texto à esquerda */
+.text-left {
+  text-align: center;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
 :root {
   --color-neutral-0: #0e0c0c;
   --color-neutral-10: #171717;
@@ -42,7 +62,7 @@ footer {
 #footer_content {
   background-color: var(--color-neutral-10);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding: 3rem 3.5rem;
 }
 
@@ -258,9 +278,9 @@ footer {
   justify-content: flex-start;
   justify-content: space-evenly;
  }
- 
+
  .espaco-vagas{
-  background-image: url(Images/Ger.png); 
+  background-image: url(Images/Ger.png);
   width: 190px;
   height: 250px;
   color: rgb(78, 78, 78);
@@ -268,10 +288,10 @@ footer {
   align-items: right;
   margin: 7px 0px;
   box-shadow: 0px 2px 7px 5px green;
-  text-align: left; 
+  text-align: left;
   font-size: 25px;
   font-weight: 800;
- } 
+ }
 
  .titulo-reserva{
    padding-bottom: 20px;
@@ -279,7 +299,7 @@ footer {
  }
 
   .espaco-vagas-ocupada {
-    background-image: url(Images/Ger.png); 
+    background-image: url(Images/Ger.png);
     width: 190px;
     height: 250px;
     color: rgb(78, 78, 78);
@@ -287,7 +307,7 @@ footer {
     align-items: right;
     margin: 7px 0px;
     box-shadow: 0px 2px 7px 5px red;
-    text-align: left; 
+    text-align: left;
     font-size: 25px;
     font-weight: 800;
  }
@@ -295,7 +315,7 @@ footer {
 
 
  .espaco-vagas-reservada{
- background-image: url(Images/Ger.png); 
+ background-image: url(Images/Ger.png);
   width: 190px;
   height: 250px;
   color: rgb(78, 78, 78);
@@ -303,7 +323,7 @@ footer {
   align-items: right;
   margin: 7px 0px;
   box-shadow: 0px 2px 7px 5px yellow;
-  text-align: left; 
+  text-align: left;
   font-size: 25px;
   font-weight: 800;;
  }
@@ -312,7 +332,7 @@ footer {
  /* Vagas Acessibilidade */
 
  .espaco-vagas-acessibilidade-livre{
-  background-image: url(Images/Ace.png); 
+  background-image: url(Images/Ace.png);
   width: 190px;
   height: 250px;
   color: rgb(78, 78, 78);
@@ -320,13 +340,13 @@ footer {
   align-items: right;
   margin: 7px 0px;
   box-shadow: 0px 2px 7px 5px green;
-  text-align: left; 
+  text-align: left;
   font-size: 25px;
   font-weight: 800;
- } 
+ }
 
    .espaco-vagas-acessibilidade-ocupada {
-    background-image: url(Images/Ace.png); 
+    background-image: url(Images/Ace.png);
     width: 190px;
     height: 250px;
     color: rgb(78, 78, 78);
@@ -334,7 +354,7 @@ footer {
     align-items: right;
     margin: 7px 0px;
     box-shadow: 0px 2px 7px 5px red;
-    text-align: left; 
+    text-align: left;
     font-size: 25px;
     font-weight: 800;
  }
@@ -348,10 +368,10 @@ footer {
   align-items: right;
   margin: 7px 0px;
   box-shadow: 0px 2px 7px 5px yellow;
-  text-align: left; 
+  text-align: left;
   font-size: 25px;
   font-weight: 800;;
- }  
+ }
 
  /* Legenda para as vagas */
 
@@ -359,7 +379,7 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+
 }
 
 .legenda-item {
@@ -376,7 +396,7 @@ footer {
 
 .legenda-vaga-verde {
   background-color: green;
-  
+
 }
 
 .legenda-vaga-amarela {
@@ -388,7 +408,7 @@ footer {
 }
 
 .legenda-acessibilidade {
-  background-image: url(Images/legenda_acessibilidade.png); 
+  background-image: url(Images/legenda_acessibilidade.png);
   width: 60px;
   height: 40px;
   margin-bottom: 30px;
