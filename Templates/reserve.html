@@ -7,7 +7,25 @@
     role='buttom' aria-pressed="true"> Cadastrar Vaga</a>
 </div>
 <!--Alter -->
-<h1>Reservar Vaga</h1>
+<h1 class="titulo-reserva">Reservar Vaga</h1>
+<div class="legenda-vagas">
+  <div class="legenda-item">
+    <div class="quadrado legenda-vaga-verde"></div>
+    <p class="texto-legenda">Vaga Livre</p>
+  </div>
+  <div class="legenda-item">
+    <div class="quadrado legenda-vaga-amarela"></div>
+    <p class="texto-legenda">Vaga Reservada</p>
+  </div>
+  <div class="legenda-item">
+    <div class="quadrado legenda-vaga-vermelha"></div>
+    <p class="texto-legenda">Vaga Ocupada</p>
+  </div>
+  <div class="legenda-item">
+    <div class="legenda-acessibilidade"></div>
+    <p class="texto-legenda">Vaga de Acessibilidade</p>
+  </div>
+</div>
 <div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}" data-desc-vagas="{{descricaoVagas}}">
 
 </div>
