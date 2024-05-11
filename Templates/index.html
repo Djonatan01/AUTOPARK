@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+<div class="position-relative overflow-hidden p-3 p-md-2 m-md-2 text-center">
    <h1><strong>AUTOPARK!</strong></h1>
-   <br>
-   <h4><strong>
+   <h5><strong>
     Diga adeus à busca por vagas!
-   </strong></h4>
-
-
+   </strong></h5>
+   <br>
+   
     <P><a href="{{url_for('router.vagas.reserve')}}" class="reservas-online">Reserve Online</a> </P>
-     Com nosso sistema de reservas online, você pode garantir sua vaga com antecedência, economizando tempo e esforço preciosos.Faça sua reserva de vaga de estacionamento de forma rápida e fácil garantindo seu espaço antes mesmo de chegar.
+    <p class="fonte">Com nosso sistema de reservas online, você pode garantir sua vaga com antecedência, economizando tempo e esforço preciosos.Faça sua reserva de vaga de estacionamento de forma rápida e fácil garantindo seu espaço antes mesmo de chegar.</p>
    <hr>
    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       <!--<img src="{{url_for('static', filename='Images/Audi_principal.png')}}" class="img-fluid mx-auto d-block" alt="Imagem responsiva"-->
-            <img src="{{url_for('static', filename='Images/Audi_principal.png')}}" class="img-fluid center-image" alt="Imagem responsiva" style="width: 600px;">
+            <img src="{{url_for('static', filename='Images/Audi_principal_s_logo.png')}}" class="img-fluid center-image" alt="Imagem responsiva" style="width: 600px;">
    </div>
    <hr>
 </div>

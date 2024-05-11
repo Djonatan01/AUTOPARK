@@ -2,7 +2,7 @@
 {% block conteudo %}
 <br>
 {% if current_user.status == "ADMIN" %}
-<a href="{{url_for('router.user.listCodUser', id=current_user.nome)}}" class="btn btn-secondary btn-xs">Cadastrar novo usuário</a>
+<a href="{{url_for('router.user.listCodUser', id=current_user.nome)}}" class="btn btn-primary btn-xs">Cadastrar novo usuário</a>
 <hr>
 {% endif%}
 <div class="row">
@@ -13,7 +13,7 @@
         <input type="text" class="form-control" name="nomeUsuario" value="{{_nomeUser}}">
       </div>
       <div class="col-auto">
-        <button type="submit" class="btn btn-secondary">Filtrar</button>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
       </div>
     </div>
   </form>
@@ -45,7 +45,7 @@
         <td>{{registro.email}}</td>
         {% if current_user.status == "ADMIN" %}
         <td>
-          <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-sm" aria-label="Editar usuário {{registro.nome}}">Editar</a>
+          <a href="{{registro.id}}/updateUser" class="btn btn-primary btn-sm" aria-label="Editar usuário {{registro.nome}}">Editar</a>
           <a href="{{registro.id}}/removeUser" onclick="return confirm('Deseja realmente excluir esse registro ?')" class="btn btn-danger btn-sm" aria-label="Excluir usuário {{registro.nome}}">Excluir</a>
         </td>
         {% endif %}
