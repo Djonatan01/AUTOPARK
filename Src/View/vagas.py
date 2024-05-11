@@ -2,6 +2,10 @@ from flask import Blueprint, render_template,request,flash
 from flask_login import login_required
 from Src.Controller.Vagas import ControleVagas
 from Src.Model.BancoDados import Vagas
+import json
+from pytz import timezone
+from datetime import datetime
+
 
 vaga = Blueprint('vagas',__name__)
 
@@ -31,12 +35,23 @@ def cadastro():
     ultimaVaga = int(ultimaVaga[0])
     return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
-@vaga.route('/reserve')
+@vaga.route('/consultaVagas')
 @login_required
-def reserve():
-  CountVagas, descricaoVagas = ControleVagas.ConsultaTotalVagas()
-  novaLista = []
-  for va in descricaoVagas:
-    novaLista.append('[' + va + ']')
+def consultaVagas():
 
-  return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista)
+  CountVagas, descricaoVagas,idVagas = ControleVagas.ConsultaTotalVagas()
+
+  novaLista = json.dumps(descricaoVagas)
+
+  return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista,idVagas=idVagas)
+
+@vaga.route('/reserva')
+@login_required
+def reserva():
+  
+  sao_paulo = timezone("America/Sao_Paulo")
+  now = datetime.now(sao_paulo)
+  hora = now.strftime("%H:%M:%S")
+  # status da vaga L = Livre, O = Ocupada, R = Reservada
+  teste = ControleVagas.atualizaStatusVaga(3,2,hora,'o')
+  return render_template('index.html')

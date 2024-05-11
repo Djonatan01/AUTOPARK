@@ -67,17 +67,16 @@ class Vagas(db.Model):
 class situacaoVagas(db.Model):
   __tablename__="SituaçãoVagas"
   idSitVaga = db.Column(db.Integer, primary_key=True,autoincrement=True)
-  nVaga = db.Column(db.Integer,db.ForeignKey('Vagas.nVaga'))
-  codUser = db.Column(db.Integer,db.ForeignKey('Usuarios.id'))
+  idVaga = db.Column(db.Integer,db.ForeignKey('Vagas.idVaga'))
+  idUser = db.Column(db.Integer,db.ForeignKey('Usuarios.id'))
   hEntrada = db.Column(db.String(15))
   hSaida = db.Column(db.String(15))
   hChegada = db.Column(db.String(15))
   status = db.Column(db.String(1))
 
-  def __init__(self, _idSitVaga, _nVaga, _codUser, _hEntrada, _hSaida, _hChegada, _status):
-    self.idSitVaga = _idSitVaga
-    self.nVaga = _nVaga
-    self.codUser = _codUser
+  def __init__(self, _idVaga, _idUser, _hEntrada, _hSaida, _hChegada, _status):
+    self.idVaga = _idVaga
+    self.idUser = _idUser
     self.hEntrada = _hEntrada
     self.hSaida = _hSaida
     self.hChegada = _hChegada
