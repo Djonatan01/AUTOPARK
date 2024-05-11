@@ -26,64 +26,46 @@
     <p class="texto-legenda">Vaga de Acessibilidade</p>
   </div>
 </div>
-<div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}" data-desc-vagas="{{descricaoVagas}}">
+<div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}">
 
 </div>
 
 <script>
+//pegar o id do usuário logado
+//pegar o id da vaga
+//Criar a função para buscar o status das vagas
+//mandar o status vaga
+
   function adicionarVaga() {
-    let descVaga = []
-    let container = document.getElementById("container-vagas")
-    let Vaga = document.getElementById("container-vagas").dataset.countVagas;
-    descVaga = document.getElementById("container-vagas").dataset.descVagas
+    let descriVaga = JSON.parse('{{descricaoVagas |safe}}')
+    let container = document.getElementById("container-vagas");
+    let Vaga = parseInt(container.dataset.countVagas); // ParseInt para garantir que seja tratado como número
 
-    console.log(descVaga);
+    let cont = 1;
+    while (cont <= Vaga) {
 
-    cont = 0
-    while (cont < Vaga) {
+      console.log(descriVaga[5])
+
       let vaga = document.createElement("div");
       vaga.className = "espaco-vagas";
+      vaga.setAttribute("value", "L");
 
-      if (cont === 3) {
-        vaga.setAttribute("value", "3");
-      }
-      else if(cont === 0){
-        vaga.setAttribute("value", "9");
-      }
-      else if(cont === 2){
-        vaga.setAttribute("value", "2");
-      }
-      else if(cont === 4){
-        vaga.setAttribute("value", "4");
-      }
-      else if(cont === 5){
-        vaga.setAttribute("value", "5");
-      }
-      else {
-        vaga.setAttribute("value", "1");
-      }
-
-      vaga.innerHTML = (descVaga[5]);
+      vaga.setAttribute("id", cont); // Definindo o ID para cada div de vaga
 
       if (vaga.getAttribute("value") === "1") {
-        vaga.classList.remove("espaco-vagas")
+        vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-ocupada");
-      }
-      else if (vaga.getAttribute("value") === "2") {
-        vaga.classList.remove("espaco-vagas")
+      } else if (vaga.getAttribute("value") === "2") {
+        vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-reservada");
-      }
-      /*Mudança apartir daqui*/
-      else if(vaga.getAttribute("value") === "3"){
-        vaga.classList.remove("espaco-vagas")
+      } else if (vaga.getAttribute("value") === "3") {
+        vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-acessibilidade-livre");
-      }
-      else if(vaga.getAttribute("value") === "4"){
-        vaga.classList.remove("espaco-vagas")
+      } else if (vaga.getAttribute("value") === "4") {
+        vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-acessibilidade-ocupada");
-      }
-      else if(vaga.getAttribute("value") === "5"){
-        vaga.classList.remove("espaco-vagas")
+      } else if (vaga.getAttribute("value") === "5") {
+        vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-acessibilidade-reservada");
       }
 
@@ -91,8 +73,7 @@
       cont++;
     }
   }
-  adicionarVaga()
-
-
+  adicionarVaga();
 </script>
+
 {% endblock conteudo %}
