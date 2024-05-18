@@ -31,47 +31,64 @@
 </div>
 
 <script>
-//pegar o id do usuário logado
-//pegar o id da vaga
-//Criar a função para buscar o status das vagas
-//mandar o status vaga
 
   function adicionarVaga() {
+    let totalReservada = 0;
     let descriVaga = JSON.parse('{{descricaoVagas |safe}}')
+    let usuarioLogado = JSON.parse('{{current_user.id |safe}}')
+    let idVagas = JSON.parse('{{idVagas |safe}}')
+    // Desestruturando as propriedades do objeto em variáveis separadas
+    let { situacaoVaga, IdVaga } = JSON.parse('{{statusVagas |safe}}')
     let container = document.getElementById("container-vagas");
-    let Vaga = parseInt(container.dataset.countVagas); // ParseInt para garantir que seja tratado como número
+    // ParseInt para garantir que seja tratado como número
+    let totalVaga = parseInt(container.dataset.countVagas);
+    let cont = 0;
+    let vaga ;
 
-    let cont = 1;
-    while (cont <= Vaga) {
-
-      console.log(descriVaga[5])
-
-      let vaga = document.createElement("div");
+    while (cont < totalVaga) {
+      totalReservada = 0;
+      vaga = document.createElement("div");
       vaga.className = "espaco-vagas";
-      vaga.setAttribute("value", "L");
 
-      vaga.setAttribute("id", cont); // Definindo o ID para cada div de vaga
+      // Definindo o ID para cada div de vaga
+      vaga.setAttribute("id", idVagas[cont]);
+      vaga.setAttribute("value", descriVaga[cont])
 
-      if (vaga.getAttribute("value") === "1") {
-        vaga.classList.remove("espaco-vagas");
-        vaga.classList.add("espaco-vagas-ocupada");
-      } else if (vaga.getAttribute("value") === "2") {
-        vaga.classList.remove("espaco-vagas");
-        vaga.classList.add("espaco-vagas-reservada");
-      } else if (vaga.getAttribute("value") === "3") {
+      if (vaga.getAttribute("value") === "A") {
         vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-acessibilidade-livre");
-      } else if (vaga.getAttribute("value") === "4") {
-        vaga.classList.remove("espaco-vagas");
-        vaga.classList.add("espaco-vagas-acessibilidade-ocupada");
-      } else if (vaga.getAttribute("value") === "5") {
-        vaga.classList.remove("espaco-vagas");
-        vaga.classList.add("espaco-vagas-acessibilidade-reservada");
+      }
+      while(totalReservada < Object.keys(IdVaga).length){
+        if (IdVaga[totalReservada] == idVagas[cont]){
+
+          if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "O")  {
+            vaga.classList.remove("espaco-vagas");
+            vaga.classList.add("espaco-vagas-ocupada");
+
+          } else if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "R")  {
+            vaga.classList.remove("espaco-vagas");
+            vaga.classList.add("espaco-vagas-reservada");
+          }
+          if (vaga.getAttribute("value") === "A"  && situacaoVaga[totalReservada] === "O")  {
+            vaga.classList.remove("espaco-vagas");
+            vaga.classList.add("espaco-vagas-acessibilidade-ocupada");
+
+          } else if (vaga.getAttribute("value") === "A" && situacaoVaga[totalReservada] === "R")  {
+            vaga.classList.remove("espaco-vagas-acessibilidade-livre");
+            vaga.classList.add("espaco-vagas-acessibilidade-reservada");
+
+          }else if (vaga.getAttribute("value") === "A") {
+            vaga.classList.remove("espaco-vagas-acessibilidade-livre");
+            vaga.classList.add("espaco-vagas-acessibilidade-livre");
+          }
+        }
+        totalReservada++;
       }
 
       container.appendChild(vaga);
       cont++;
     }
+
   }
   adicionarVaga();
 </script>
