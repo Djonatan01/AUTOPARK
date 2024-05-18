@@ -4,8 +4,7 @@ from Src.Controller.Vagas import ControleVagas
 from Src.Model.BancoDados import Vagas
 import json
 from pytz import timezone
-from datetime import datetime
-
+from datetime import datetime, timedelta
 
 vaga = Blueprint('vagas',__name__)
 
@@ -43,15 +42,26 @@ def consultaVagas():
 
   novaLista = json.dumps(descricaoVagas)
 
-  return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista,idVagas=idVagas)
+  statusVagas = ControleVagas.consultarStatusVaga()
+
+  statusVagas = json.dumps(statusVagas)
+
+  return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista,idVagas=idVagas, statusVagas=statusVagas)
 
 @vaga.route('/reserva')
 @login_required
+#Data e hora da possivel
+# atributo (idVaga,iduser,horaChegada,status)
 def reserva():
-  
   sao_paulo = timezone("America/Sao_Paulo")
   now = datetime.now(sao_paulo)
-  hora = now.strftime("%H:%M:%S")
+  # Adicionando 30 minutos
+  new_time = now + timedelta(minutes=30)
+  #hora = now.strftime("%H:%M:%S")
+  # Formatando a data e a hora
+  data_hora = new_time.strftime("%d/%m/%Y %H:%M:%S")
+
   # status da vaga L = Livre, O = Ocupada, R = Reservada
-  teste = ControleVagas.atualizaStatusVaga(3,2,hora,'o')
+  teste = ControleVagas.atualizaStatusVaga(6,3,data_hora,'R')
+
   return render_template('index.html')

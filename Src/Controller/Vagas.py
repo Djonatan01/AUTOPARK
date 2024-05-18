@@ -22,8 +22,18 @@ class ControleVagas():
             return True
         except IntegrityError:
             return False
+
+    def consultarStatusVaga():
+
+        situacaoVaga = [stat.status for stat in situacaoVagas.query.all()]
+
+        IdVaga = [stat.idVaga for stat in situacaoVagas.query.all()]
+
+        return {"situacaoVaga": situacaoVaga,
+                "IdVaga" : IdVaga
+                }
+
     def atualizaStatusVaga(idVaga,iduser,horaChegada,status):
-        #_idSitVaga, _idVaga, _idUser, _hEntrada, _hSaida, _hChegada, _status)
         situacaoVaga = situacaoVagas(idVaga,iduser,"","",horaChegada,status.upper())
         db.session.add(situacaoVaga)
         try:
