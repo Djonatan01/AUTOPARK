@@ -27,6 +27,7 @@
   </div>
 </div>
 <div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}">
+  
 
 </div>
 
@@ -48,7 +49,9 @@
     while (cont < totalVaga) {
       totalReservada = 0;
       vaga = document.createElement("div");
-      vaga.className = "espaco-vagas";
+      //vaga.className = "espaco-vagas";
+      vaga.classList.add("espaco-vagas", "vagas");
+      
 
       // Definindo o ID para cada div de vaga
       vaga.setAttribute("id", idVagas[cont]);
@@ -88,6 +91,47 @@
       container.appendChild(vaga);
       cont++;
     }
+    var divs = document.querySelectorAll('div.vagas');
+
+
+var divOcupadas = ["espaco-vagas-ocupada", "espaco-vagas-reservada", "espaco-vagas-acessibilidade-ocupada", "espaco-vagas-acessibilidade-reservada"];
+
+// Adiciona um evento de clique a cada div, tive que adicionar mais uma  div para isso
+divs.forEach(function(div) {
+    div.addEventListener('click', function() {
+        // Verifica se a div possui alguma das classes proibidas
+        var vagasOcupadas = divOcupadas.some(function(cls) {
+            return div.classList.contains(cls);
+        });
+
+        if (!vagasOcupadas) {
+     
+            let id = this.id;
+            var data = { vagaId: id }; 
+
+            // Faz uma solicitação para a rota /reserve usando POST
+            fetch('/reserva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Lida com a resposta
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            alert('Vaga Reservada com sucesso!!');
+        } else {
+            console.log('A vaga que voce selecionou esta reservada ou ocupada:', div.className);
+            alert('A vaga já está ocupada ou reservada. Por favor escolher outra');
+        }
+    });
+});
 
   }
   adicionarVaga();

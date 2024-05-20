@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,request,flash
+from flask import Blueprint, render_template,request,flash,jsonify
 from flask_login import login_required
 from Src.Controller.Vagas import ControleVagas
 from Src.Model.BancoDados import Vagas
@@ -48,11 +48,16 @@ def consultaVagas():
 
   return render_template('reserve.html', CountVagas = CountVagas, descricaoVagas=novaLista,idVagas=idVagas, statusVagas=statusVagas)
 
-@vaga.route('/reserva')
+@vaga.route('/reserva', methods=['POST'])
 @login_required
 #Data e hora da possivel
 # atributo (idVaga,iduser,horaChegada,status)
 def reserva():
+
+  data = request.get_json()
+
+  vaga_id = data.get('vagaId')
+
   sao_paulo = timezone("America/Sao_Paulo")
   now = datetime.now(sao_paulo)
   # Adicionando 30 minutos
@@ -62,6 +67,6 @@ def reserva():
   data_hora = new_time.strftime("%d/%m/%Y %H:%M:%S")
 
   # status da vaga L = Livre, O = Ocupada, R = Reservada
-  teste = ControleVagas.atualizaStatusVaga(6,3,data_hora,'R')
+  teste = ControleVagas.atualizaStatusVaga(vaga_id,3,data_hora,'R')
 
   return render_template('index.html')
