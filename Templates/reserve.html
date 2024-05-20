@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}">
-  
+
 
 </div>
 
@@ -52,7 +52,6 @@
       //vaga.className = "espaco-vagas";
       vaga.classList.add("espaco-vagas", "vagas");
       
-
       // Definindo o ID para cada div de vaga
       vaga.setAttribute("id", idVagas[cont]);
       vaga.setAttribute("value", descriVaga[cont])
@@ -105,9 +104,9 @@ divs.forEach(function(div) {
         });
 
         if (!vagasOcupadas) {
-     
+
             let id = this.id;
-            var data = { vagaId: id }; 
+            var data = { vagaId: id };
 
             // Faz uma solicitação para a rota /reserve usando POST
             fetch('/reserva', {
