@@ -46,7 +46,8 @@ class UserController:
       query = Usuarios.query.paginate(page=page, per_page=per_page)
     else:
       query = Usuarios.query.filter(Usuarios.nome.like('%'+_userFilter+'%')).paginate(page=page, per_page=per_page)
-      queryCount = Usuarios.query.count()
+      queryCount = Usuarios.query.count().all()
+      print("--------------------------------",queryCount)
     return {
       "regUser": query,
       "count": queryCount,
