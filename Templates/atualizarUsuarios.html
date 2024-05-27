@@ -3,34 +3,34 @@
 <h2 style="text-align: center;">Atualizar usuário</h2><br>
 
 <div class="container">
-{% for category, message in get_flashed_messages(with_categories=true) %}
+  {% for category, message in get_flashed_messages(with_categories=true) %}
   {% if category == 'error' %}
-    <div class="alert alert-danger">
-        {{message}}
-    </div>
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
   {% else %}
   <div class="alert alert-success">
-        {{message}}
+    {{message}}
   </div>
   {% endif %}
-{% endfor %}
-<form method="POST" action="{{url_for('router.user.updateUser', id=user.id)}}">
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="form-label" for="form3Example4">Nome do usuário</label>
-      <input type="text" class="form-control" name="nome" value="{{user.nome}}">
-      <label class="form-label" for="form3Example4">CPF</label>
-      <input type="text" minlength="11" maxlength="11" class="form-control" id="cpf" name="cpf" value="{{user.cpf}}">
-      <label class="form-label" for="form3Example4">Endereço</label>
-      <input type="text" class="form-control" name="endereco" value="{{user.endereco}}">
-      <label class="form-label" for="form3Example4">Celular</label>
-      <input type="text" class="form-control" name="contato" value="{{user.contato}}" id="celular">
-      <label class="form-label" for="form3Example4">E-mail</label>
-      <input type="text" class="form-control" name="email" value="{{user.email}}">
-      <button type="submit" name="bt1" value="1" class="btn btn-primary">Enviar</button>
+  {% endfor %}
+  <form method="POST" action="{{url_for('router.user.updateUser', id=user.id)}}">
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="form-label" for="form3Example4">Nome do usuário</label>
+        <input type="text" class="form-control" name="nome" value="{{user.nome}}">
+        <label class="form-label" for="form3Example4">CPF</label>
+        <input type="text" minlength="11" maxlength="11" class="form-control" id="cpf" name="cpf" value="{{user.cpf}}">
+        <label class="form-label" for="form3Example4">Endereço</label>
+        <input type="text" class="form-control" name="endereco" value="{{user.endereco}}">
+        <label class="form-label" for="form3Example4">Celular</label>
+        <input type="text" class="form-control" name="contato" value="{{user.contato}}" id="celular">
+        <label class="form-label" for="form3Example4">E-mail</label>
+        <input type="text" class="form-control" name="email" value="{{user.email}}">
+        <button type="submit" name="bt1" value="1" class="btn btn-primary">Enviar</button>
+      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 </div>
 </form>
 {% endblock conteudo %}
