@@ -1,25 +1,38 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-
+<div class="container">
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+  {% if category == 'error' %}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+  {% else %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
 <form method="POST" action="{{url_for('router.vagas.cadastro')}}">
-    <div class="row">
-      <div class="col-sm-2">
-        <br>
-        <label class="form-label" for="form3Example4">Tipo da Vaga:</label>
-        <select class="form-control" id="tipoVaga" style="width:15rem;height:2.5rem" name = "TipoVaga" required>
-            <option value="" disabled selected>Selecione uma opção</option>
-			        <option value="G">Vagas Gerais</option>
-			        <option value="A">Vagas de Acessibilidade</option>
-		    </select>
-        <br>
-        <label class="form-label" for="form3Example4" >Número da  Vaga:</label>
-        <input type="text" id ="NumVaga" name="NumVaga" value = {{ultimaVaga}} class="form-control"  required>
-        <br>
-      </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <br>
+      <label class="form-label" for="form3Example4">Tipo da Vaga:</label>
+      <select class="form-control" id="tipoVaga" style="width:15rem;height:2.5rem" name="TipoVaga" required>
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="G">Vagas Gerais</option>
+        <option value="A">Vagas de Acessibilidade</option>
+      </select>
+      <br>
+      <label class="form-label" for="form3Example4">Número da Vaga:</label>
+      <input type="text" id="NumVaga" name="NumVaga" value={{ultimaVaga}} class="form-control" required>
+      <br>
     </div>
-    <button type="submit"  class="btn btn-primary"style="width:10rem;height:2.5rem">Cadastrar Vaga</button>
-    <a  href="{{url_for('router.vagas.consultaVagas')}}" class="btn btn-primary"style="width:10rem;height:2.5rem" role = 'buttom' aria-pressed="true"> Voltar </a>
-    <br><br>
+  </div>
+  <button type="submit" class="btn btn-primary" style="width:10rem;height:2.5rem">Cadastrar Vaga</button>
+  <a href="{{url_for('router.vagas.consultaVagas')}}" class="btn btn-primary" style="width:10rem;height:2.5rem"
+    role='buttom' aria-pressed="true"> Voltar </a>
+  <br><br>
 </form>
 
 

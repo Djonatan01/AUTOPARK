@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,request,flash,jsonify
+from flask import Blueprint, render_template,request,flash
 from flask_login import login_required
 from Src.Controller.Vagas import ControleVagas
 from Src.Model.BancoDados import Vagas
@@ -17,6 +17,15 @@ def Cadastrar():
     ultimaVaga = ultimaVaga.split("-")
     ultimaVaga = int(ultimaVaga[0])
 
+    CountVagas, descricaoVagas,idVagas,totalVagasAcess = ControleVagas.ConsultaTotalVagas()
+    # Cálculo da porcentagem
+    porcentagemAcessibilidade = (totalVagasAcess / CountVagas) * 100
+
+    if porcentagemAcessibilidade < 0.07:
+      print("Porcentagem: ")
+      print(porcentagemAcessibilidade)
+      flash(f'A lei Lei Federal nº 13.146/2015 e Lei Federal nº 10.741/2003 informa que deve ser reservado 7% das vagas para idosos e pessoasl com necessidades especiais {porcentagemAcessibilidade} % ', 'error')
+
   return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
 @vaga.route('/cadastro',methods = ['POST'])
@@ -32,13 +41,23 @@ def cadastro():
     ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first().nVaga
     ultimaVaga = ultimaVaga.split("-")
     ultimaVaga = int(ultimaVaga[0])
+
+    CountVagas, descricaoVagas,idVagas,totalVagasAcess = ControleVagas.ConsultaTotalVagas()
+    # Cálculo da porcentagem
+    porcentagemAcessibilidade = (totalVagasAcess / CountVagas) * 100
+
+    if porcentagemAcessibilidade < 0.07:
+      print("Porcentagem: ")
+      print(porcentagemAcessibilidade)
+      flash(f'A lei Lei Federal nº 13.146/2015 e Lei Federal nº 10.741/2003 informa que deve ser reservado 7% das vagas para idosos e pessoasl com necessidades especiais {porcentagemAcessibilidade} % ', 'error')
+
     return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
 @vaga.route('/consultaVagas')
 @login_required
 def consultaVagas():
 
-  CountVagas, descricaoVagas,idVagas = ControleVagas.ConsultaTotalVagas()
+  CountVagas, descricaoVagas,idVagas,totalVagasAcess = ControleVagas.ConsultaTotalVagas()
 
   novaLista = json.dumps(descricaoVagas)
 
@@ -50,8 +69,6 @@ def consultaVagas():
 
 @vaga.route('/reserva', methods=['POST'])
 @login_required
-#Data e hora da possivel
-# atributo (idVaga,iduser,horaChegada,status)
 def reserva():
 
   data = request.get_json()
@@ -63,11 +80,10 @@ def reserva():
   now = datetime.now(sao_paulo)
   # Adicionando 30 minutos
   new_time = now + timedelta(minutes=30)
-  #hora = now.strftime("%H:%M:%S")
   # Formatando a data e a hora
   data_hora = new_time.strftime("%d/%m/%Y %H:%M:%S")
 
   # status da vaga L = Livre, O = Ocupada, R = Reservada
-  teste = ControleVagas.atualizaStatusVaga(vaga_id,user_id,data_hora,'R')
+  teste = ControleVagas.atualizaStatusVaga(vaga_id,user_id,'','',data_hora,'R')
 
   return render_template('index.html')
