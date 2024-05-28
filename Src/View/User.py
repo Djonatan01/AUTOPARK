@@ -63,6 +63,7 @@ def createUser():
   partes = ultimo_cod_user.split("-")
   _ultimoNumero = int(partes[-1]) + 1
   novoCodUser = "127-USER-000" + str(_ultimoNumero)
+  
   return render_template('criarUsuarios.html', novoCodUser=novoCodUser)
 
 

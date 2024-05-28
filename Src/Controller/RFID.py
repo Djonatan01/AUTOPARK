@@ -1,4 +1,5 @@
-from Src.Model.BancoDados import Registro ,CartaoRFID,Usuarios
+from Src.Model.BancoDados import Registro, CartaoRFID, Usuarios,situacaoVagas
+from Src.Controller.Vagas import ControleVagas
 from datetime import datetime
 from pytz import timezone
 from config import db
@@ -7,7 +8,6 @@ class RFID:
     def Register(rfidCode):
         # Filter user (Unique register)
         rfid = CartaoRFID.query.filter_by(numRfid=rfidCode).first()
-
         if rfid == None:
             print("Não existe cadastro")
             return "Não registrado"
@@ -19,10 +19,18 @@ class RFID:
             hora = now.strftime("%H:%M:%S")
             # Filter rfid regiters
             query = Registro.query.filter_by(rfid=rfidCode, dt=data).all()
-            status = (
-                "Saída"
-                if query != [] and query[-1].statusReg == "Entrada" else "Entrada"
-            )
+            status = ( "Saída" if query != [] and query[-1].statusReg == "Entrada" else "Entrada")
+            # rfid.id é referente ao ID do usuário que esta atribuido o cartão RFID
+            rfid.id
+            # Verificar se o usuário tem uma vaga reservada
+            UserVaga = situacaoVagas.query.filter_by(idUser=rfid.id).first()
+
+            if UserVaga != None:
+                data_hora = data + " " +  hora
+                if status == "Saída":
+                    ControleVagas.atualizaStatusVaga(UserVaga.idVaga,UserVaga.idUser,'',data_hora,'','P')
+                else:
+                    ControleVagas.atualizaStatusVaga(UserVaga.idVaga,UserVaga.idUser,data_hora,'','','O')
 
             # Create an obj of Register and add in DB
             reg = Registro(rfid.id, rfidCode, data, hora, status)
@@ -42,7 +50,8 @@ class RFID:
                 .paginate(page=page, per_page=per_page)
             )
         else:
-            _dataFilter = datetime.strptime(_data, "%Y-%m-%d").strftime("%d/%m/%Y")
+            _dataFilter = datetime.strptime(
+                _data, "%Y-%m-%d").strftime("%d/%m/%Y")
             query = (
                 Registro.query.join(Usuarios, Registro.id == Usuarios.id)
                 .add_columns(Usuarios.nome, Registro.dt, Registro.hr, Registro.statusReg)

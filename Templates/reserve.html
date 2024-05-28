@@ -6,7 +6,7 @@
   <a href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-primary" style="width:10rem;height:2.5rem"
     role='buttom' aria-pressed="true"> Cadastrar Vaga</a>
 </div>
-<!--Alter -->
+<!--Alter ajustar para ficar responcivo-->
 <h1 class="titulo-reserva">Reservar Vaga</h1>
 <div class="legenda-vagas">
   <div class="legenda-item">
@@ -28,7 +28,6 @@
 </div>
 <div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}">
 
-
 </div>
 
 <script>
@@ -44,7 +43,7 @@
     // ParseInt para garantir que seja tratado como número
     let totalVaga = parseInt(container.dataset.countVagas);
     let cont = 0;
-    let vaga ;
+    let vaga;
 
     while (cont < totalVaga) {
       totalReservada = 0;
@@ -60,26 +59,26 @@
         vaga.classList.remove("espaco-vagas");
         vaga.classList.add("espaco-vagas-acessibilidade-livre");
       }
-      while(totalReservada < Object.keys(IdVaga).length){
-        if (IdVaga[totalReservada] == idVagas[cont]){
+      while (totalReservada < Object.keys(IdVaga).length) {
+        if (IdVaga[totalReservada] == idVagas[cont]) {
 
-          if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "O")  {
+          if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "O") {
             vaga.classList.remove("espaco-vagas");
             vaga.classList.add("espaco-vagas-ocupada");
 
-          } else if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "R")  {
+          } else if (vaga.getAttribute("value") === "G" && situacaoVaga[totalReservada] === "R") {
             vaga.classList.remove("espaco-vagas");
             vaga.classList.add("espaco-vagas-reservada");
           }
-          if (vaga.getAttribute("value") === "A"  && situacaoVaga[totalReservada] === "O")  {
+          if (vaga.getAttribute("value") === "A" && situacaoVaga[totalReservada] === "O") {
             vaga.classList.remove("espaco-vagas");
             vaga.classList.add("espaco-vagas-acessibilidade-ocupada");
 
-          } else if (vaga.getAttribute("value") === "A" && situacaoVaga[totalReservada] === "R")  {
+          } else if (vaga.getAttribute("value") === "A" && situacaoVaga[totalReservada] === "R") {
             vaga.classList.remove("espaco-vagas-acessibilidade-livre");
             vaga.classList.add("espaco-vagas-acessibilidade-reservada");
 
-          }else if (vaga.getAttribute("value") === "A") {
+          } else if (vaga.getAttribute("value") === "A") {
             vaga.classList.remove("espaco-vagas-acessibilidade-livre");
             vaga.classList.add("espaco-vagas-acessibilidade-livre");
           }
@@ -93,53 +92,52 @@
     var divs = document.querySelectorAll('div.vagas');
 
 
-var divOcupadas = ["espaco-vagas-ocupada", "espaco-vagas-reservada", "espaco-vagas-acessibilidade-ocupada", "espaco-vagas-acessibilidade-reservada"];
+    var divOcupadas = ["espaco-vagas-ocupada", "espaco-vagas-reservada", "espaco-vagas-acessibilidade-ocupada", "espaco-vagas-acessibilidade-reservada"];
 
-// Adiciona um evento de clique a cada div, tive que adicionar mais uma  div para isso
-divs.forEach(function(div) {
-    div.addEventListener('click', function() {
+    // Adiciona um evento de clique a cada div, tive que adicionar mais uma  div para isso
+    divs.forEach(function (div) {
+      div.addEventListener('click', function () {
         // Verifica se a div possui alguma das classes proibidas
-        var vagasOcupadas = divOcupadas.some(function(cls) {
-            return div.classList.contains(cls);
+        var vagasOcupadas = divOcupadas.some(function (cls) {
+          return div.classList.contains(cls);
         });
 
         if (!vagasOcupadas) {
 
-            let id = this.id;
-            var data = { vagaId: id, userId: usuarioLogado};
+          let id = this.id;
+          var data = { vagaId: id, userId: usuarioLogado };
 
-            var confirmReservation = confirm("Você quer reservar esta vaga: " +id);
+          var confirmReservation = confirm("Deseja realmente reservar esta vaga: " + id);
 
-            if(!confirmReservation){
-              return;
-            }
+          if (!confirmReservation) {
+            return;
+          }
 
-            // Faz uma solicitação para a rota /reserve usando POST
-            fetch('/reserva', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
+          // Faz uma solicitação para a rota /reserve usando POST
+          fetch('/reserva', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
             .then(response => response.json())
             .then(data => {
-                // Lida com a resposta
-                console.log('Success:', data);
+              // Lida com a resposta
+              console.log('Success:', data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+              console.error('Error:', error);
             });
-            alert('Vaga Reservada com sucesso!!');
-            location.reload();
+          alert('Vaga reservada com sucesso!!');
+          location.reload();
         } else {
-            console.log('A vaga que voce selecionou esta reservada ou ocupada:', div.className);
-            alert('A vaga já está ocupada ou reservada. Por favor escolher outra');
-            location.reload();
+          console.log('A vaga que voce selecionou esta reservada ou ocupada:', div.className);
+          alert('A vaga já está ocupada ou reservada. Por favor escolher outra');
+          location.reload();
         }
+      });
     });
-});
-
   }
   adicionarVaga();
 </script>
