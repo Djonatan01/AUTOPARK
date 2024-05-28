@@ -1,33 +1,40 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <div class="position-relative overflow-hidden p-3 p-md-2 m-md-2 text-center">
-   <h1><strong>AUTOPARK!</strong></h1>
-   <h5><strong>
-    Diga adeus à busca por vagas!
-   </strong></h5>
-   <br>
+  <h1><strong>AUTOPARK!</strong></h1>
+  <h5><strong>
+      Diga adeus à busca por vagas!
+    </strong></h5>
+  <br>
 
-    <P><a href="{{url_for('router.vagas.consultaVagas')}}" class="reservas-online">Reserve Online</a> </P>
-    <p class="fonte">Com nosso sistema de reservas online, você pode garantir sua vaga com antecedência, economizando tempo e esforço preciosos.Faça sua reserva de vaga de estacionamento de forma rápida e fácil garantindo seu espaço antes mesmo de chegar.</p>
-   <hr>
-   <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      <img src="{{url_for('static', filename='Images/homeCarro.png')}}" class="img-fluid center-image" alt="Imagem responsiva" style="width: 600px; border: 10px solid #333131;">
-   </div>
-   <hr>
+  <P><a href="{{url_for('router.vagas.consultaVagas')}}" class="reservas-online">Reserve Online</a> </P>
+  <p class="fonte">Com nosso sistema de reservas online, você pode garantir sua vaga com antecedência, economizando
+    tempo e esforço preciosos.Faça sua reserva de vaga de estacionamento de forma rápida e fácil garantindo seu espaço
+    antes mesmo de chegar.</p>
+  <hr>
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <img src="{{url_for('static', filename='Images/homeCarro.png')}}" class="img-fluid center-image"
+      alt="Imagem responsiva" style="width: 600px; border: 10px solid #333131;">
+  </div>
+  <hr>
 </div>
 <div>
   <h3>Nossos Destaques:</h3>
-    <ul>
-      <li>
-        <strong>Faça Parte da Família Autopark:</strong> Junte-se a nós e experimente a diferença de um estacionamento que prioriza você. Não importa se é a sua primeira visita ou se você já é um cliente fiel, estamos ansiosos para recebê-lo na Autopark.
-      </li>
-      <li>
-        <strong>Promoções Especiais para cliente fixo:</strong> Confira nossas promoções especiais e descontos sazonais para aproveitar ainda mais a sua experiência de estacionamento.
-      </li>
-      <li>
-        <strong>Sustentabilidade em Ação:</strong> Comprometidos com um futuro mais verde, oferecemos estações de recarga para veículos elétricos e implementamos práticas sustentáveis em nossas operações.
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <strong>Faça Parte da Família Autopark:</strong> Junte-se a nós e experimente a diferença de um estacionamento que
+      prioriza você. Não importa se é a sua primeira visita ou se você já é um cliente fiel, estamos ansiosos para
+      recebê-lo na Autopark.
+    </li>
+    <li>
+      <strong>Promoções Especiais para cliente fixo:</strong> Confira nossas promoções especiais e descontos sazonais
+      para aproveitar ainda mais a sua experiência de estacionamento.
+    </li>
+    <li>
+      <strong>Sustentabilidade em Ação:</strong> Comprometidos com um futuro mais verde, oferecemos estações de recarga
+      para veículos elétricos e implementamos práticas sustentáveis em nossas operações.
+    </li>
+  </ul>
   Na Autopark, estacionar nunca foi tão fácil e seguro. Sua jornada começa aqui.
 </div>
 <br>

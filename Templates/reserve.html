@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="container" id="container-vagas" data-count-vagas="{{CountVagas}}">
-  
+
 
 </div>
 
@@ -51,7 +51,6 @@
       vaga = document.createElement("div");
       //vaga.className = "espaco-vagas";
       vaga.classList.add("espaco-vagas", "vagas");
-      
 
       // Definindo o ID para cada div de vaga
       vaga.setAttribute("id", idVagas[cont]);
@@ -105,12 +104,12 @@ divs.forEach(function(div) {
         });
 
         if (!vagasOcupadas) {
-     
+
             let id = this.id;
-            var data = { vagaId: id, userId: usuarioLogado}; 
+            var data = { vagaId: id, userId: usuarioLogado};
 
             var confirmReservation = confirm("Você quer reservar esta vaga: " +id);
-            
+
             if(!confirmReservation){
               return;
             }
