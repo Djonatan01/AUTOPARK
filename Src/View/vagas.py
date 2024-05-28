@@ -57,6 +57,7 @@ def reserva():
   data = request.get_json()
 
   vaga_id = data.get('vagaId')
+  user_id = data.get('userId')
 
   sao_paulo = timezone("America/Sao_Paulo")
   now = datetime.now(sao_paulo)
@@ -67,6 +68,6 @@ def reserva():
   data_hora = new_time.strftime("%d/%m/%Y %H:%M:%S")
 
   # status da vaga L = Livre, O = Ocupada, R = Reservada
-  teste = ControleVagas.atualizaStatusVaga(vaga_id,3,data_hora,'R')
+  teste = ControleVagas.atualizaStatusVaga(vaga_id,user_id,data_hora,'R')
 
   return render_template('index.html')
