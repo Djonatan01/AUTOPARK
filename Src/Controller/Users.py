@@ -43,13 +43,12 @@ class UserController:
       logging.error(f"Usuário com id {id} não encontrado")
       return False
 
-  def List(page, _userFilter, per_page=15):
+  def List(page, _userFilter, per_page=5):
     """ Lista os usuários """
     if len(_userFilter) < 1:
       query = Usuarios.query.paginate(page=page, per_page=per_page)
     else:
-      query = Usuarios.query.filter(Usuarios.nome.like(
-          '%'+_userFilter+'%')).paginate(page=page, per_page=per_page)
+      query = Usuarios.query.filter(Usuarios.nome.like('%'+_userFilter+'%')).paginate(page=page, per_page=per_page)
 
     queryCount = Usuarios.query.count()
 

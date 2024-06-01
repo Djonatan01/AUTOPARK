@@ -3,6 +3,7 @@ from Src.Controller.Vagas import ControleVagas
 from datetime import datetime
 from pytz import timezone
 from config import db
+from sqlalchemy.sql import and_
 
 class RFID:
     def Register(rfidCode):
@@ -23,7 +24,7 @@ class RFID:
             # rfid.id é referente ao ID do usuário que esta atribuido o cartão RFID
             rfid.id
             # Verificar se o usuário tem uma vaga reservada
-            UserVaga = situacaoVagas.query.filter_by(idUser=rfid.id).first()
+            UserVaga = db.session.query(situacaoVagas).filter(and_ (situacaoVagas.idUser == rfid.id, situacaoVagas.status!= "P")).first()
 
             if UserVaga != None:
                 data_hora = data + " " +  hora
@@ -38,7 +39,7 @@ class RFID:
             db.session.commit()
             return "Registrado"
 
-    def List(page, _data, per_page=10):
+    def List(page, _data, per_page=5):
         sao_paulo = timezone("America/Sao_Paulo")
         now = datetime.now(sao_paulo)
         data = now.strftime("%d/%m/%Y")

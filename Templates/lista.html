@@ -37,19 +37,19 @@
 </div>
 <div style="display: flex;">
   {% if listData['registros'].has_prev %}
-  <a href="{{listData['registros'].prev_num}}?filtroData={{_data}}"> «Anterior |</a>
+  <a href="{{listData['registros'].prev_num}}?filtroData={{_data}}"> «Anterior| </a>
   {% else %}
-  <p> «Anterior |</p>
+  <p> «Anterior| </p>
   {% endif %}
 
   {% if listData['registros'].has_next %}
   {% if listData['page'] == 1 %}
-  <a href="list/{{listData['registros'].next_num}}?filtroData={{_data}}">| Próximo»</a>
+  <a href="list/{{listData['registros'].next_num}}?filtroData={{_data}}"> |Próximo»</a>
   {% else %}
-  <a href="{{listData['registros'].next_num}}?filtroData={{_data}}">| Próximo»</a>
+  <a href="{{listData['registros'].next_num}}?filtroData={{_data}}"> |Próximo»</a>
   {% endif %}
   {% else %}
-  <p>| Próximo»</p>
+  <p> |Próximo»</p>
   {% endif %}
 </div>
 
