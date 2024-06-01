@@ -10,11 +10,13 @@ vaga = Blueprint('vagas',__name__)
 
 @vaga.route('/Cadastrar')
 def Cadastrar():
-  ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first().nVaga
+
+  ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first()
+
   if ultimaVaga is None:
     ultimaVaga = 0
   else:
-    ultimaVaga = ultimaVaga.split("-")
+    ultimaVaga = ultimaVaga.nVaga.split("-")
     ultimaVaga = int(ultimaVaga[0])
 
     CountVagas, descricaoVagas,idVagas,totalVagasAcess = ControleVagas.ConsultaTotalVagas()
@@ -22,9 +24,8 @@ def Cadastrar():
     porcentagemAcessibilidade = (totalVagasAcess / CountVagas) * 100
 
     if porcentagemAcessibilidade < 0.07:
-      print("Porcentagem: ")
-      print(porcentagemAcessibilidade)
-      flash(f'A lei Lei Federal nº 13.146/2015 e Lei Federal nº 10.741/2003 informa que deve ser reservado 7% das vagas para idosos e pessoasl com necessidades especiais {porcentagemAcessibilidade} % ', 'error')
+
+      flash(f'A lei Lei Federal nº 13.146/2015 e Lei Federal nº 10.741/2003 informa que deve ser reservado 7% das vagas para idosos e pessoas com necessidades especiais {porcentagemAcessibilidade} % ', 'error')
 
   return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
 
