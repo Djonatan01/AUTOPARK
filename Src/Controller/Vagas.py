@@ -2,7 +2,9 @@ from Src.Model.BancoDados import situacaoVagas,Vagas
 from config import db
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import aliased
+from sqlalchemy.sql import and_
 import logging
+
 
 class ControleVagas():
     def ConsultaTotalVagas():
@@ -38,8 +40,11 @@ class ControleVagas():
 
     def atualizaStatusVaga(idVaga, iduser, hEntrada, hSaida, horaChegada, status):
         status = status.upper()
+        # Atualizar a reserva com os novos valores de hEntrada, saída e status
+        vaga_reserva = db.session.query(situacaoVagas).filter(and_(situacaoVagas.idVaga == idVaga, situacaoVagas.idUser == iduser, situacaoVagas.status!= "P")).first()
+
         if hEntrada == "" and hSaida == "":
-            vaga_reserva = db.session.query(situacaoVagas).filter_by(idUser=iduser).first()
+            #vaga_reserva = db.session.query(situacaoVagas).filter_by(idUser=iduser).first()
             if vaga_reserva:
                 vaga_reserva.idVaga = idVaga
                 vaga_reserva.idUser = iduser
@@ -65,9 +70,8 @@ class ControleVagas():
                     logging.error(f"Ocorreu um erro ao registrar a nova situação de vaga: {e}")
                     db.session.rollback()
                     return False
+
         if hEntrada != "":
-            # Atualizar a reserva com os novos valores de hEntrada e status
-            vaga_reserva = db.session.query(situacaoVagas).filter_by(idSitVaga=idVaga, idUser=iduser).first()
             if vaga_reserva:
                 vaga_reserva.hEntrada = hEntrada
                 vaga_reserva.status = status
@@ -80,8 +84,6 @@ class ControleVagas():
                     return False
 
         if hSaida != "":
-            # Atualizar o campo hSaida
-            vaga_reserva = db.session.query(situacaoVagas).filter_by(idSitVaga=idVaga, idUser=iduser).first()
             if vaga_reserva:
                 vaga_reserva.hSaida = hSaida
                 vaga_reserva.status = status

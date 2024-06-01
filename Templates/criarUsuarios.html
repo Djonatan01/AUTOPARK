@@ -3,42 +3,71 @@
 <h2 style="text-align: center;">Cadastrar usuário</h2><br>
 
 <div class="container">
-{% for category, message in get_flashed_messages(with_categories=true) %}
+  {% for category, message in get_flashed_messages(with_categories=true) %}
   {% if category == 'error' %}
-    <div class="alert alert-danger">
-        {{message}}
-    </div>
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
   {% else %}
   <div class="alert alert-success">
-        {{message}}
+    {{message}}
   </div>
   {% endif %}
-{% endfor %}
+  {% endfor %}
 </div>
 <form method="POST" action="{{url_for('router.user.createUser')}}">
-    <div class="col-sm-5">
+  <div class="row">
+    <div class="col-sm-6">
       <label class="form-label" for="">Código usuário</label>
       {% if current_user.nome == "ADMIN" %}
-        <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}">
+      <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}">
       {% else %}
-        <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}" readonly>
+      <input type="text" class="form-control" name="codUser" value="{{novoCodUser}}" readonly>
       {% endif %}
-      <label class="form-label" for="">Nome do usunário</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="form-label" for="">Nome do usuário</label>
       <input type="text" class="form-control" name="nome">
-      <label class="form-label" for="">CPF usuário </label>
-      <input type="text" minlength="6" maxlength="14" class="form-control" name="cpf"id="cpf">
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-6">
+      <label class="form-label" for="">CPF usuário</label>
+      <input type="text" minlength="6" maxlength="14" class="form-control" name="cpf" id="cpf">
+    </div>
+    <div class="col-sm-6">
       <label class="form-label" for="">Endereço</label>
       <input type="text" class="form-control" name="endereco">
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-6">
       <label class="form-label" for="">Celular</label>
       <input type="text" class="form-control" name="contato" id="celular">
+    </div>
+    <div class="col-sm-6">
       <label class="form-label" for="">E-mail</label>
       <input type="email" class="form-control" name="email">
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-6">
       <label class="form-label" for="">Senha</label>
       <input type="password" class="form-control" name="senha">
-      <hr>
-        <button type="submit" name="bt1" value="1" class="btn btn-primary">Enviar</button>
-
     </div>
-    <br>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="submit" name="bt1" value="1" class="btn btn-primary">Enviar</button>
+    </div>
+  </div>
 </form>
+
+<br>
 {% endblock conteudo %}

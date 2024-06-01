@@ -39,17 +39,18 @@ def cadastro():
     else:
       flash("Todos os campos devem estar preenchidos",'error')
 
-    ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first().nVaga
-    ultimaVaga = ultimaVaga.split("-")
-    ultimaVaga = int(ultimaVaga[0])
-
+    ultimaVaga = Vagas.query.order_by(Vagas.idVaga.desc()).first()
+    if not ultimaVaga is None:
+      ultimaVaga = ultimaVaga.nVaga.split("-")
+      ultimaVaga = int(ultimaVaga[0])
+    else:
+      ultimaVaga = 0
+      
     CountVagas, descricaoVagas,idVagas,totalVagasAcess = ControleVagas.ConsultaTotalVagas()
     # Cálculo da porcentagem
     porcentagemAcessibilidade = (totalVagasAcess / CountVagas) * 100
 
     if porcentagemAcessibilidade < 0.07:
-      print("Porcentagem: ")
-      print(porcentagemAcessibilidade)
       flash(f'A lei Lei Federal nº 13.146/2015 e Lei Federal nº 10.741/2003 informa que deve ser reservado 7% das vagas para idosos e pessoasl com necessidades especiais {porcentagemAcessibilidade} % ', 'error')
 
     return render_template('cadastrarVagas.html',ultimaVaga = ultimaVaga + 1)
@@ -85,6 +86,6 @@ def reserva():
   data_hora = new_time.strftime("%d/%m/%Y %H:%M:%S")
 
   # status da vaga L = Livre, O = Ocupada, R = Reservada
-  teste = ControleVagas.atualizaStatusVaga(vaga_id,user_id,'','',data_hora,'R')
+  ControleVagas.atualizaStatusVaga(vaga_id,user_id,'','',data_hora,'R')
 
   return render_template('index.html')
