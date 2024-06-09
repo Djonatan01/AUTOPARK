@@ -3,8 +3,10 @@
 {% block conteudo %}
 <div style="text-align: right;">
   <br>
+  {% if current_user.nome == "ADMIN" %} 
   <a href="{{url_for('router.vagas.Cadastrar')}}" class="btn btn-primary" style="width:10rem;height:2.5rem"
     role='buttom' aria-pressed="true"> Cadastrar Vaga</a>
+  {% endif%}
 </div>
 <!--Alter ajustar para ficar responcivo-->
 <h1 class="titulo-reserva">Reservar Vaga</h1>
