@@ -50,7 +50,8 @@ Install the necessary dependencies with the following commands:
 
 #### Visão (Diretório que contém as classes para as atividades do protótipo)
 
-Usuário, Tráfego, Login, Página Inicial, Funcionário e Sobre
+* [User](Src/View/User.py), [Tráfego](Src/View/Traffic.py), [Login](Src/View/Login.py), [Página Inicial](Src/View/Home.py) and [Sobre](Src/View/About.py)
+
 Controlador (Métodos de ação)
 Usuários, Funcionários e RFID
 Modelo (A estrutura lógica de um banco de dados)
