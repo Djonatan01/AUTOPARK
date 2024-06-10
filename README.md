@@ -5,17 +5,17 @@
 
 ###### Protótipo desenvolvido para trabalho de graduação Fatec de Cruzeiro-SP.
 
-## Libraries and Tools
+## Bibliotecas e Ferramentas
 
 ### Backend
 
 * 🐍 [Python](https://www.python.org/)
 * 🧪 [Flask](https://flask.palletsprojects.com/en/2.3.x/)
-* ⚗️ [SQLAlchemy (Object Relational Mapper - ORM)](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
+* ⚗️  [SQLAlchemy (Object Relational Mapper - ORM)](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
 
 ### Frontend
 * 🖥️ [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
-* ⚡️ [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* ⚡️  [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * ✨ [BootStrap](https://getbootstrap.com/)
 
 ## Project Organization
