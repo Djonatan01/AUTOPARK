@@ -17,13 +17,11 @@
 * [![HTML5](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/50px-HTML5_logo_and_wordmark.svg.png)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [![CSS Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/50px-CSS3_logo_and_wordmark.svg.png)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [![JavaScript Icon](https://github.com/Djonatan01/AutoPark/assets/103201121/5f6f6e3b-3c7a-4af8-ab59-b5603657e9e0)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-*[![Bootstrap Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/50px-Bootstrap_logo.svg.png)](https://getbootstrap.com/)
+* [![Bootstrap Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/50px-Bootstrap_logo.svg.png)](https://getbootstrap.com/)
 
 
 
-
-
-## Project Organization
+## Project Organizatio
 
 The API was designed using the Model-View-Controller (MVC) pattern:
 
@@ -44,7 +42,28 @@ The API was designed using the Model-View-Controller (MVC) pattern:
 
 First, create a virtual env to host the project dependencies.
 Install the necessary dependencies with the following commands:
+////////////////////
 
+## Organização do Projeto
+
+* O protótipo foi desenvolvido usando o padrão Model-View-Controller (MVC):
+
+#### Visão (Diretório que contém as classes para as atividades do protótipo)
+
+Usuário, Tráfego, Login, Página Inicial, Funcionário e Sobre
+Controlador (Métodos de ação)
+Usuários, Funcionários e RFID
+Modelo (A estrutura lógica de um banco de dados)
+Há apenas um arquivo de banco de dados que é responsável por gerenciar o banco de dados de todas as entidades
+BancoDados
+Configuração do Projeto
+Primeiro, crie um ambiente virtual para hospedar as dependências do projeto.
+Instale as dependências necessárias com os seguintes comandos:
+
+
+
+
+/////////////////////
 Linux:
 
 ```bash
