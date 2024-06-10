@@ -1,7 +1,7 @@
 
 # AutoPrak-App
 
-###### Apresentamos um protótipo AutoPrak para gerenciamento de estacionamento, que utiliza tecnologias RFID e ESP32 para um controle preciso de entrada e saída de veículos, integrado a um sistema web robusto desenvolvido em Python Flask com HTML, JavaScript e CSS. Este projeto redefine a eficiência e segurança na administração de estacionamentos.
+###### Apresentamos AutoPrak um protótipo para gerenciamento de estacionamento, que utiliza tecnologias RFID e ESP32 para um controle preciso de entrada e saída de veículos, integrado a um sistema web robusto desenvolvido em Python Flask com HTML, JavaScript e CSS. Este projeto redefine a eficiência e segurança na administração de estacionamentos.
 
 ###### Protótipo desenvolvido para trabalho de graduação Fatec de Cruzeiro-SP.
 
