@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="position-relative overflow-hidden p-3 p-md-2 m-md-2 text-center">
+  <h1><strong>A págian solicitado não foi encontrada!</strong></h1>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <img src="{{url_for('static', filename='Images/erro404.png')}}" class="img-fluid center-image"
+      alt="Imagem responsiva" style="width: 600px; border: 10px solid #333131;">
+  </div>
+  <hr>
+</div>
+<div>
+
+{% endblock conteudo %}
