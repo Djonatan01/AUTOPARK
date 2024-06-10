@@ -15,8 +15,12 @@
 
 ### Frontend
 * 🖥️ [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
-* ⚡️  [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [![CSS Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/50px-CSS3_logo_and_wordmark.svg.png)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * ✨ [BootStrap](https://getbootstrap.com/)
+* [![JavaScript Icon](https://github.com/Djonatan01/AutoPark/assets/103201121/5f6f6e3b-3c7a-4af8-ab59-b5603657e9e0)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+
+
 
 ## Project Organization
 
