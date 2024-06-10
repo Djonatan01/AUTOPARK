@@ -14,10 +14,12 @@
 * ⚗️  [SQLAlchemy (Object Relational Mapper - ORM)](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
 
 ### Frontend
-* 🖥️ [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
+* [![HTML5](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/50px-HTML5_logo_and_wordmark.svg.png)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [![CSS Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/50px-CSS3_logo_and_wordmark.svg.png)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* ✨ [BootStrap](https://getbootstrap.com/)
+*[![Bootstrap Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/50px-Bootstrap_logo.svg.png)](https://getbootstrap.com/)
 * [![JavaScript Icon](https://github.com/Djonatan01/AutoPark/assets/103201121/5f6f6e3b-3c7a-4af8-ab59-b5603657e9e0)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+
 
 
 
